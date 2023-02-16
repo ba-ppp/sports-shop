@@ -110,9 +110,9 @@ export default function Home() {
                 <path
                   d="M11.4998 19.2061L2.70115 9.92527C1.92859 9.14433 1.41864 8.1374 1.24355 7.04712C1.06847 5.95684 1.23713 4.8385 1.72563 3.85053V3.85053C2.09464 3.10462 2.63366 2.45803 3.29828 1.96406C3.9629 1.47008 4.73408 1.14284 5.5483 1.00931C6.36252 0.875782 7.19647 0.939779 7.98144 1.19603C8.7664 1.45228 9.47991 1.89345 10.0632 2.48319L11.4998 3.93577L12.9364 2.48319C13.5197 1.89345 14.2332 1.45228 15.0182 1.19603C15.8031 0.939779 16.6371 0.875782 17.4513 1.00931C18.2655 1.14284 19.0367 1.47008 19.7013 1.96406C20.3659 2.45803 20.905 3.10462 21.274 3.85053V3.85053C21.7625 4.8385 21.9311 5.95684 21.756 7.04712C21.581 8.1374 21.071 9.14433 20.2984 9.92527L11.4998 19.2061Z"
                   stroke="white"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></path>
               </svg>
             </a>
@@ -128,16 +128,16 @@ export default function Home() {
                 <path
                   d="M18.1159 8.72461H2.50427C1.99709 8.72461 1.58594 9.12704 1.58594 9.62346V21.3085C1.58594 21.8049 1.99709 22.2074 2.50427 22.2074H18.1159C18.6231 22.2074 19.0342 21.8049 19.0342 21.3085V9.62346C19.0342 9.12704 18.6231 8.72461 18.1159 8.72461Z"
                   stroke="white"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></path>
                 <path
                   d="M6.34473 6.34469V4.95676C6.34473 3.85246 6.76252 2.79338 7.5062 2.01252C8.24988 1.23165 9.25852 0.792969 10.3102 0.792969C11.362 0.792969 12.3706 1.23165 13.1143 2.01252C13.858 2.79338 14.2758 3.85246 14.2758 4.95676V6.34469"
                   stroke="white"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></path>
               </svg>
               <span className="inline-block w-6 h-6 text-center bg-orange-300 rounded-full font-semibold font-heading text-white">
@@ -166,9 +166,9 @@ export default function Home() {
                   <path
                     d="M1.66797 1.66699L5.0013 5.00033L8.33464 1.66699"
                     stroke="black"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   ></path>
                 </svg>
               </span>
@@ -189,16 +189,16 @@ export default function Home() {
               <path
                 d="M18.1159 8.72461H2.50427C1.99709 8.72461 1.58594 9.12704 1.58594 9.62346V21.3085C1.58594 21.8049 1.99709 22.2074 2.50427 22.2074H18.1159C18.6231 22.2074 19.0342 21.8049 19.0342 21.3085V9.62346C19.0342 9.12704 18.6231 8.72461 18.1159 8.72461Z"
                 stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               ></path>
               <path
                 d="M6.34473 6.34469V4.95676C6.34473 3.85246 6.76252 2.79338 7.5062 2.01252C8.24988 1.23165 9.25852 0.792969 10.3102 0.792969C11.362 0.792969 12.3706 1.23165 13.1143 2.01252C13.858 2.79338 14.2758 3.85246 14.2758 4.95676V6.34469"
                 stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               ></path>
             </svg>
             <span className="inline-block w-6 h-6 text-center text-white bg-orange-300 rounded-full font-semibold font-heading">
@@ -245,9 +245,9 @@ export default function Home() {
                   <path
                     d="M9.00002 1L1 9.00002M1.00003 1L9.00005 9.00002"
                     stroke="black"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   ></path>
                 </svg>
               </button>
@@ -274,9 +274,9 @@ export default function Home() {
                       <path
                         d="M1.66797 1.66699L5.0013 5.00033L8.33464 1.66699"
                         stroke="black"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       ></path>
                     </svg>
                   </span>
@@ -294,9 +294,9 @@ export default function Home() {
                     <path
                       d="M11.4998 19.2061L2.70115 9.92527C1.92859 9.14433 1.41864 8.1374 1.24355 7.04712C1.06847 5.95684 1.23713 4.8385 1.72563 3.85053V3.85053C2.09464 3.10462 2.63366 2.45803 3.29828 1.96406C3.9629 1.47008 4.73408 1.14284 5.5483 1.00931C6.36252 0.875782 7.19647 0.939779 7.98144 1.19603C8.7664 1.45228 9.47991 1.89345 10.0632 2.48319L11.4998 3.93577L12.9364 2.48319C13.5197 1.89345 14.2332 1.45228 15.0182 1.19603C15.8031 0.939779 16.6371 0.875782 17.4513 1.00931C18.2655 1.14284 19.0367 1.47008 19.7013 1.96406C20.3659 2.45803 20.905 3.10462 21.274 3.85053V3.85053C21.7625 4.8385 21.9311 5.95684 21.756 7.04712C21.581 8.1374 21.071 9.14433 20.2984 9.92527L11.4998 19.2061Z"
                       stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     ></path>
                   </svg>
                 </a>
@@ -312,16 +312,16 @@ export default function Home() {
                     <path
                       d="M18.1159 8.72461H2.50427C1.99709 8.72461 1.58594 9.12704 1.58594 9.62346V21.3085C1.58594 21.8049 1.99709 22.2074 2.50427 22.2074H18.1159C18.6231 22.2074 19.0342 21.8049 19.0342 21.3085V9.62346C19.0342 9.12704 18.6231 8.72461 18.1159 8.72461Z"
                       stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     ></path>
                     <path
                       d="M6.34473 6.34469V4.95676C6.34473 3.85246 6.76252 2.79338 7.5062 2.01252C8.24988 1.23165 9.25852 0.792969 10.3102 0.792969C11.362 0.792969 12.3706 1.23165 13.1143 2.01252C13.858 2.79338 14.2758 3.85246 14.2758 4.95676V6.34469"
                       stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     ></path>
                   </svg>
                   <span className="inline-block w-6 h-6 text-center bg-gray-100 rounded-full font-semibold font-heading">
@@ -373,16 +373,16 @@ export default function Home() {
                     <path
                       d="M17.5 17.6719L12.5042 12.4961"
                       stroke="black"
-                      stroke-miterlimit="10"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeMiterlimit="10"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     ></path>
                     <path
                       d="M7.27524 14.4082C10.8789 14.4082 13.8002 11.486 13.8002 7.88134C13.8002 4.27666 10.8789 1.35449 7.27524 1.35449C3.67159 1.35449 0.750244 4.27666 0.750244 7.88134C0.750244 11.486 3.67159 14.4082 7.27524 14.4082Z"
                       stroke="black"
-                      stroke-miterlimit="10"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeMiterlimit="10"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     ></path>
                   </svg>
                 </span>
@@ -418,7 +418,7 @@ export default function Home() {
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <g clip-path="url(#clip0)">
+                    <g clipPath="url(#clip0)">
                       <path
                         d="M17.0064 0.554688H0.992752C0.444397 0.554962 -0.000137297 0.999771 3.181e-08 1.54826V17.5619C0.00027469 18.1103 0.445084 18.5548 0.993576 18.5547H17.0064C17.5551 18.5548 17.9999 18.1102 18 17.5615C18 17.5614 18 17.5612 18 17.5611V1.54744C17.9997 0.999084 17.5549 0.55455 17.0064 0.554688Z"
                         fill="white"
@@ -452,7 +452,7 @@ export default function Home() {
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <g clip-path="url(#clip0)">
+                    <g clipPath="url(#clip0)">
                       <path
                         d="M17.9825 5.84674C17.9403 4.89033 17.7857 4.2328 17.5641 3.66305C17.3356 3.05827 16.9839 2.51682 16.5232 2.0667C16.0731 1.60958 15.5281 1.25438 14.9303 1.02939C14.3573 0.807834 13.7032 0.653172 12.7468 0.611003C11.7832 0.565264 11.4773 0.554688 9.03349 0.554688C6.58966 0.554688 6.28377 0.565264 5.32379 0.607432C4.36738 0.6496 3.70985 0.804401 3.14024 1.02582C2.53532 1.25438 1.99387 1.60601 1.54375 2.0667C1.08663 2.51682 0.731567 3.06185 0.50644 3.65962C0.284885 4.2328 0.130222 4.88676 0.0880542 5.84317C0.0423147 6.80672 0.0317383 7.11261 0.0317383 9.55645C0.0317383 12.0003 0.0423147 12.3062 0.0844829 13.2662C0.126651 14.2226 0.281451 14.8801 0.503006 15.4498C0.731567 16.0546 1.08663 16.5961 1.54375 17.0462C1.99387 17.5033 2.5389 17.8585 3.13667 18.0835C3.70985 18.3051 4.36381 18.4597 5.32035 18.5019C6.2802 18.5442 6.58622 18.5546 9.03006 18.5546C11.4739 18.5546 11.7798 18.5442 12.7398 18.5019C13.6962 18.4597 14.3537 18.3051 14.9233 18.0835C16.133 17.6158 17.0894 16.6594 17.5571 15.4498C17.7785 14.8767 17.9333 14.2226 17.9755 13.2662C18.0177 12.3062 18.0282 12.0003 18.0282 9.55645C18.0282 7.11261 18.0247 6.80672 17.9825 5.84674ZM16.3616 13.1958C16.3228 14.0749 16.1752 14.5496 16.0521 14.8661C15.7496 15.6502 15.1273 16.2726 14.3431 16.5751C14.0267 16.6981 13.5485 16.8458 12.6729 16.8844C11.7235 16.9267 11.4387 16.9371 9.03707 16.9371C6.6354 16.9371 6.34709 16.9267 5.40112 16.8844C4.52204 16.8458 4.04734 16.6981 3.73087 16.5751C3.34064 16.4308 2.98544 16.2023 2.69713 15.9034C2.39824 15.6115 2.16968 15.2599 2.02546 14.8696C1.90239 14.5532 1.75473 14.0749 1.71613 13.1994C1.67383 12.25 1.66339 11.9651 1.66339 9.56345C1.66339 7.16178 1.67383 6.87347 1.71613 5.92764C1.75473 5.04856 1.90239 4.57386 2.02546 4.25739C2.16968 3.86703 2.39824 3.51196 2.7007 3.22351C2.99244 2.92463 3.34408 2.69607 3.73444 2.55198C4.05091 2.42891 4.52918 2.28125 5.40469 2.24252C6.35409 2.20035 6.63897 2.18977 9.0405 2.18977C11.4457 2.18977 11.7305 2.20035 12.6764 2.24252C13.5555 2.28125 14.0302 2.42891 14.3467 2.55198C14.7369 2.69607 15.0921 2.92463 15.3804 3.22351C15.6793 3.51539 15.9079 3.86703 16.0521 4.25739C16.1752 4.57386 16.3228 5.052 16.3616 5.92764C16.4037 6.87704 16.4143 7.16178 16.4143 9.56345C16.4143 11.9651 16.4037 12.2464 16.3616 13.1958Z"
                         fill="white"
@@ -662,9 +662,9 @@ export default function Home() {
                   <path
                     d="M9.00002 1L1 9.00002M1.00003 1L9.00005 9.00002"
                     stroke="black"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   ></path>
                 </svg>
               </button>
@@ -685,16 +685,16 @@ export default function Home() {
                   <path
                     d="M16.0006 16.3154C19.1303 16.3154 21.6673 13.799 21.6673 10.6948C21.6673 7.59064 19.1303 5.07422 16.0006 5.07422C12.871 5.07422 10.334 7.59064 10.334 10.6948C10.334 13.799 12.871 16.3154 16.0006 16.3154Z"
                     stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   ></path>
                   <path
                     d="M24.4225 23.8963C23.6678 22.3507 22.4756 21.0445 20.9845 20.1298C19.4934 19.2151 17.7647 18.7295 15.9998 18.7295C14.2349 18.7295 12.5063 19.2151 11.0152 20.1298C9.52406 21.0445 8.33179 22.3507 7.57715 23.8963"
                     stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   ></path>
                 </svg>
                 <span>Sign&nbsp;In</span>
@@ -711,9 +711,9 @@ export default function Home() {
                     <path
                       d="M11.4998 19.2061L2.70115 9.92527C1.92859 9.14433 1.41864 8.1374 1.24355 7.04712C1.06847 5.95684 1.23713 4.8385 1.72563 3.85053V3.85053C2.09464 3.10462 2.63366 2.45803 3.29828 1.96406C3.9629 1.47008 4.73408 1.14284 5.5483 1.00931C6.36252 0.875782 7.19647 0.939779 7.98144 1.19603C8.7664 1.45228 9.47991 1.89345 10.0632 2.48319L11.4998 3.93577L12.9364 2.48319C13.5197 1.89345 14.2332 1.45228 15.0182 1.19603C15.8031 0.939779 16.6371 0.875782 17.4513 1.00931C18.2655 1.14284 19.0367 1.47008 19.7013 1.96406C20.3659 2.45803 20.905 3.10462 21.274 3.85053V3.85053C21.7625 4.8385 21.9311 5.95684 21.756 7.04712C21.581 8.1374 21.071 9.14433 20.2984 9.92527L11.4998 19.2061Z"
                       stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     ></path>
                   </svg>
                 </a>
@@ -729,16 +729,16 @@ export default function Home() {
                     <path
                       d="M18.1159 8.72461H2.50427C1.99709 8.72461 1.58594 9.12704 1.58594 9.62346V21.3085C1.58594 21.8049 1.99709 22.2074 2.50427 22.2074H18.1159C18.6231 22.2074 19.0342 21.8049 19.0342 21.3085V9.62346C19.0342 9.12704 18.6231 8.72461 18.1159 8.72461Z"
                       stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     ></path>
                     <path
                       d="M6.34473 6.34469V4.95676C6.34473 3.85246 6.76252 2.79338 7.5062 2.01252C8.24988 1.23165 9.25852 0.792969 10.3102 0.792969C11.362 0.792969 12.3706 1.23165 13.1143 2.01252C13.858 2.79338 14.2758 3.85246 14.2758 4.95676V6.34469"
                       stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     ></path>
                   </svg>
                   <span className="inline-block w-6 h-6 text-center bg-gray-100 rounded-full font-semibold font-heading">
