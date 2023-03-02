@@ -146,7 +146,7 @@ export default function Home() {
             </a>
           </div>
           <button className="flex-shrink-0 hidden xl:block px-8 border-l">
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
               <Image
                 className="w-9 h-9 object-cover mr-2"
                 src="/avatar.svg"
@@ -172,7 +172,20 @@ export default function Home() {
                   ></path>
                 </svg>
               </span>
-            </div>
+            </div> */}
+            <a
+              className="inline-flex items-center font-semibold font-heading"
+              href="/login"
+            >
+              <Image
+                className="object-cover mr-3"
+                src="/avatar-none.svg"
+                alt=""
+                width={32}
+                height={31}
+              />
+              <span className="text-white">Sign&nbsp;In</span>
+            </a>
           </button>
           <a
             className="xl:hidden flex mr-6 items-center text-gray-900"
@@ -644,7 +657,7 @@ export default function Home() {
               <a className="mr-auto text-3xl font-bold font-heading" href="#">
                 <Image
                   className="h-9"
-                  src="/yofte-logo.svg"
+                  src="/yofte-logo-white.svg"
                   alt=""
                   width={144}
                   height={36}
