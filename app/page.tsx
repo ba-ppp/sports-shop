@@ -175,7 +175,7 @@ export default function Home() {
             </div> */}
             <a
               className="inline-flex items-center font-semibold font-heading"
-              href="/login"
+              href="/signin"
             >
               <Image
                 className="object-cover mr-3"
