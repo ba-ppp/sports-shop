@@ -8,12 +8,12 @@ export default function Login() {
           <div className="absolute inset-0 border border-gray-300 my-24 -ml-4 -mr-4"></div>
           <div className="relative mx-auto py-28 px-4 bg-blue-800 border border-white text-center">
             <a
-              className="inline-block mb-12 text-3xl font-bold font-heading text-white"
+              className="flex justify-center space-x-3 mb-12 text-3xl font-bold font-heading text-white"
               href="#"
             >
               <img
                 className="h-9"
-                src="yofte-assets/logos/yofte-logo-white.svg"
+                src="/yofte-logo-white.svg"
                 alt=""
                 width="auto"
               />
@@ -98,7 +98,7 @@ export default function Login() {
                       Agree to our Terms, Data Policy and Cookies.
                     </span>
                   </label>
-                  <button className="mt-12 md:mt-16 bg-orange-300 hover:bg-orange-400 text-white font-bold font-heading py-5 px-8 rounded-md uppercase">
+                  <button className="mt-12 md:mt-16 bg-orange-400 hover:bg-orange-500 text-white font-bold font-heading py-5 px-8 rounded-md uppercase">
                     JOIN yofte
                   </button>
                 </form>
