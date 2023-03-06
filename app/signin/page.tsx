@@ -49,9 +49,12 @@ export default function Signin() {
                 </div>
 
                 <div className="p-5">
-                    Don't have an account? <a className="text-blue-400" href="/signup">Sign up</a>
+                  Don't have an account?{" "}
+                  <a className="text-blue-400" href="/signup">
+                    Sign up
+                  </a>
                 </div>
-                
+
                 <div className="w-full px-4">
                   <button className="bg-blue-800 hover:bg-blue-900 text-white font-bold font-heading py-5 px-8 rounded-md uppercase">
                     Log in
