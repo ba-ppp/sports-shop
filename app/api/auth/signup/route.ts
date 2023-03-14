@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
   const { email, password } = await request.json();
   
   try {
-    const res = await axios.post(`${ROOT_API}/${routes.login}`, {
+    const res = await axios.post(`${ROOT_API}/${routes.register}`, {
       email,
       password,
     });

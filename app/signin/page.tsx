@@ -4,6 +4,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { ResponseStatusCode } from "../enums/enums";
+import { setTokenLocalStorage } from "../utils/utils";
 
 export default function Signin() {
   const [email, setEmail] = useState("");
@@ -28,8 +29,7 @@ export default function Signin() {
         password,
       });
       if (response.status === ResponseStatusCode.OK) {
-        localStorage.setItem("access_token", response.data.access_token);
-        localStorage.setItem("refresh_token", response.data.refresh_token);
+        setTokenLocalStorage(response.data)
         router.push("/");
       } else {
         console.log(response.data);

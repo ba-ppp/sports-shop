@@ -1,6 +1,57 @@
+"use client";
+
+import axios from "axios";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { ResponseStatusCode } from "../enums/enums";
+import { setTokenLocalStorage } from "../utils/utils";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isDisabled, toggleDisabled] = useState(true);
+
+  const router = useRouter();
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    if (name === "email") {
+      setEmail(value);
+    }
+    
+    if (name === "password") {
+      setPassword(value);
+    }
+
+    if (name === "repeat_password") {
+      if (value === password) {
+        toggleDisabled(false);
+      } else {
+        toggleDisabled(true);
+      }
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post("/api/auth/signup", {
+        email,
+        password,
+      });
+      if (res.status === ResponseStatusCode.OK) {
+        setTokenLocalStorage(res.data);
+        router.push("/");
+      } else {
+        console.log(res.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <section className="py-20 bg-blue-800 overflow-x-hidden">
       <div className="relative container px-4 mx-auto">
@@ -76,21 +127,27 @@ export default function Login() {
                 <h2 className="mb-10 text-xl text-white font-bold font-heading">
                   Sign up with Email:
                 </h2>
-                <form action="">
+                <form action="" onSubmit={handleSubmit}>
                   <input
                     className="w-full mb-4 px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md"
                     type="text"
                     placeholder="steven@example.dev"
+                    name="email"
+                    onChange={handleInput}
                   />
                   <input
                     className="w-full mb-4 px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md"
                     type="password"
                     placeholder="Password"
+                    name="password"
+                    onChange={handleInput}
                   />
                   <input
                     className="w-full mb-10 px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md"
                     type="password"
                     placeholder="Repeat password"
+                    name="repeat_password"
+                    onChange={handleInput}
                   />
                   <label className="flex" htmlFor="">
                     <input className="mr-4 mt-1" type="checkbox" />
@@ -98,7 +155,10 @@ export default function Login() {
                       Agree to our Terms, Data Policy and Cookies.
                     </span>
                   </label>
-                  <button className="mt-12 md:mt-16 bg-orange-400 hover:bg-orange-500 text-white font-bold font-heading py-5 px-8 rounded-md uppercase">
+                  <button
+                    disabled={isDisabled}
+                    className="mt-12 md:mt-16 bg-orange-400 hover:bg-orange-500 text-white font-bold font-heading py-5 px-8 rounded-md uppercase disabled:bg-gray-600"
+                  >
                     JOIN yofte
                   </button>
                 </form>
