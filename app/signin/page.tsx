@@ -93,7 +93,7 @@ export default function Signin() {
                 </div>
 
                 <div className="p-5">
-                  Don't have an account?{" "}
+                  Not have an account?{" "}
                   <a className="text-blue-400" href="/signup">
                     Sign up
                   </a>
