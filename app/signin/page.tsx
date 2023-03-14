@@ -1,4 +1,44 @@
+"use client";
+
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { ResponseStatusCode } from "../enums/enums";
+
 export default function Signin() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const router = useRouter();
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    if (name === "email") {
+      setEmail(value);
+    } else if (name === "password") {
+      setPassword(value);
+    }
+  };
+
+  const handleSignIn = async (e: any) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("/api/auth/signin", {
+        email,
+        password,
+      });
+      if (response.status === ResponseStatusCode.OK) {
+        localStorage.setItem("access_token", response.data.access_token);
+        localStorage.setItem("refresh_token", response.data.refresh_token);
+        router.push("/");
+      } else {
+        console.log(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <section className="py-20 bg-gray-100 overflow-x-hidden">
       <div className="relative container px-4 mx-auto">
@@ -33,6 +73,8 @@ export default function Signin() {
                     <input
                       className="p-5 w-full border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md"
                       type="email"
+                      name="email"
+                      onChange={handleInput}
                     />
                   </label>
                 </div>
@@ -44,6 +86,8 @@ export default function Signin() {
                     <input
                       className="p-5 w-full border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md"
                       type="password"
+                      name="password"
+                      onChange={handleInput}
                     />
                   </label>
                 </div>
@@ -56,7 +100,10 @@ export default function Signin() {
                 </div>
 
                 <div className="w-full px-4">
-                  <button className="bg-blue-800 hover:bg-blue-900 text-white font-bold font-heading py-5 px-8 rounded-md uppercase">
+                  <button
+                    onClick={handleSignIn}
+                    className="bg-blue-800 hover:bg-blue-900 text-white font-bold font-heading py-5 px-8 rounded-md uppercase"
+                  >
                     Log in
                   </button>
                 </div>
@@ -81,7 +128,7 @@ export default function Signin() {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <circle cx="18" cy="18" r="18" fill="#A692FF"></circle>
-                    <g clip-path="url(#clip0)">
+                    <g clipPath="url(#clip0)">
                       <path
                         d="M15.135 24.3373L9 18.2023L9.81024 17.392L15.135 22.7168L26.1898 11.6621L27 12.4724L15.135 24.3373Z"
                         fill="white"
@@ -111,7 +158,7 @@ export default function Signin() {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <circle cx="18" cy="18" r="18" fill="#A692FF"></circle>
-                    <g clip-path="url(#clip0)">
+                    <g clipPath="url(#clip0)">
                       <path
                         d="M15.135 24.3373L9 18.2023L9.81024 17.392L15.135 22.7168L26.1898 11.6621L27 12.4724L15.135 24.3373Z"
                         fill="white"
