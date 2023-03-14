@@ -19,7 +19,6 @@ export default function Signin() {
       setPassword(value);
     }
   };
-  
 
   const handleSignIn = async (e: any) => {
     e.preventDefault();
