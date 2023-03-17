@@ -3,8 +3,8 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { ResponseStatusCode } from "../enums/enums";
-import { setTokenLocalStorage } from "../utils/utils";
+import { ResponseStatusCode } from "../../enums/enums";
+import { setTokenLocalStorage } from "../../utils/utils";
 
 export default function Signin() {
   const [email, setEmail] = useState("");

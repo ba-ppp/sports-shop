@@ -4,8 +4,8 @@ import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { ResponseStatusCode } from "../enums/enums";
-import { setTokenLocalStorage } from "../utils/utils";
+import { ResponseStatusCode } from "../../enums/enums";
+import { setTokenLocalStorage } from "../../utils/utils";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -19,7 +19,7 @@ export default function Login() {
     if (name === "email") {
       setEmail(value);
     }
-    
+
     if (name === "password") {
       setPassword(value);
     }

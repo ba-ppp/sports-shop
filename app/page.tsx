@@ -59,7 +59,7 @@ export default function Home() {
               <li>
                 <a
                   className="inline-block w-28 mr-3 py-2 text-center hover:text-white bg-white hover:bg-gray-900 rounded-full font-bold font-heading transition duration-200"
-                  href="#"
+                  href="/products"
                 >
                   Category
                 </a>
@@ -67,7 +67,7 @@ export default function Home() {
               <li>
                 <a
                   className="inline-block w-28 mr-3 py-2 text-center hover:text-white bg-white hover:bg-gray-900 rounded-full font-bold font-heading transition duration-200"
-                  href="#"
+                  href="/products"
                 >
                   Collection
                 </a>
@@ -75,7 +75,7 @@ export default function Home() {
               <li>
                 <a
                   className="inline-block w-28 mr-3 py-2 text-center hover:text-white bg-white hover:bg-gray-900 rounded-full font-bold font-heading transition duration-200"
-                  href="#"
+                  href="/products"
                 >
                   Story
                 </a>
@@ -83,7 +83,7 @@ export default function Home() {
               <li>
                 <a
                   className="inline-block w-28 mr-3 py-2 text-center hover:text-white bg-white hover:bg-gray-900 rounded-full font-bold font-heading transition duration-200"
-                  href="#"
+                  href="/products"
                 >
                   Brand
                 </a>
@@ -91,7 +91,7 @@ export default function Home() {
               <li>
                 <a
                   className="inline-block w-28 mr-3 py-2 text-center hover:text-white bg-white hover:bg-gray-900 rounded-full font-bold font-heading transition duration-200"
-                  href="#"
+                  href="/products"
                 >
                   Photos
                 </a>
@@ -116,7 +116,7 @@ export default function Home() {
                 ></path>
               </svg>
             </a>
-            <a className="flex items-center" href="#">
+            <a className="flex items-center" href="/cart">
               <svg
                 className="mr-3"
                 width="23"
@@ -547,7 +547,7 @@ export default function Home() {
                   </p>
                   <a
                     className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold font-heading py-6 px-8 rounded-md uppercase transition duration-200"
-                    href="#"
+                    href="/products"
                   >
                     Shop Now
                   </a>
@@ -767,19 +767,19 @@ export default function Home() {
             />
             <ul className="text-3xl font-bold font-heading">
               <li className="mb-8">
-                <a href="#">Category</a>
+                <a href="/products">Category</a>
               </li>
               <li className="mb-8">
-                <a href="#">Collection</a>
+                <a href="/products">Collection</a>
               </li>
               <li className="mb-8">
-                <a href="#">Story</a>
+                <a href="/products">Story</a>
               </li>
               <li className="mb-8">
-                <a href="#">Story</a>
+                <a href="/products">Story</a>
               </li>
               <li>
-                <a href="#">Photos</a>
+                <a href="/products">Photos</a>
               </li>
             </ul>
           </nav>
