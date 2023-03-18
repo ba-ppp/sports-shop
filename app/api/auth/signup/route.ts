@@ -1,4 +1,4 @@
-import { ResponseStatusCode } from "@/app/enums/enums";
+import { ResponseStatusCode } from "@/enums/enums";
 import { ROOT_API } from "@/constant/env";
 import { routes } from "@/constant/routes";
 import axios from "axios";
@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   const { email, password } = await request.json();
-  
+
   try {
     const res = await axios.post(`${ROOT_API}/${routes.register}`, {
       email,
