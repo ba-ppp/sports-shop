@@ -1,4 +1,9 @@
-import { CartTotal } from "@/components/cart/cartTotal"
+// import { CartTotal } from ""
+import dynamic from "next/dynamic";
+
+const CartTotal = dynamic(() => import('@/components/cart/cartTotal'), {
+  ssr: false
+})
 
 export default function Page() {
   return (

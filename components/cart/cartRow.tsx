@@ -2,6 +2,7 @@
 
 import { cartAtom, subTotalPriceAtom } from "@/store/cart.store";
 import { CartItem } from "@/types/types";
+import { setCartLocalStorage } from "@/utils/utils";
 import { useAtom, useSetAtom } from "jotai";
 import { useState } from "react";
 
@@ -10,20 +11,23 @@ type Props = {
 };
 export const CartRow = (props: Props) => {
   const { id, name, price, discountPrice, imageURL, quantity } = props.item;
- console.log(id)
 
   const setCart = useSetAtom(cartAtom);
 
   const setQuantity = (newValue: number) => {
     setCart((prev) => {
-      return prev.map((item) => {
+      const newCart = prev.map((item) => {
         if (item.id === id) {
           return { ...item, quantity: newValue };
         }
         return item;
       });
-    })
-  }
+
+      setCartLocalStorage(newCart);
+
+      return newCart;
+    });
+  };
 
   const handleChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -55,14 +59,14 @@ export const CartRow = (props: Props) => {
           </div>
           <div className="w-2/3 px-4">
             <h3 className="mb-2 text-xl font-bold font-heading">{name}</h3>
-            <p className="text-gray-500">Maecenas 0.7 commodo sit</p>
+            <div className="text-gray-500">Maecenas 0.7 commodo sit</div>
           </div>
         </div>
       </div>
       <div className="hidden lg:block lg:w-2/12 px-4">
-        <p className="text-lg text-blue-500 font-bold font-heading">
+        <div className="text-lg text-blue-500 font-bold font-heading">
           ${discountPrice}
-        </p>
+        </div>
         <span className="text-xs text-gray-500 line-through">${price}</span>
       </div>
       <div className="w-auto md:w-1/6 lg:w-2/12 px-4">
@@ -123,9 +127,9 @@ export const CartRow = (props: Props) => {
         </div>
       </div>
       <div className="w-auto md:w-1/6 lg:w-2/12 px-4 text-right">
-        <p className="text-lg text-blue-500 font-bold font-heading">
+        <div className="text-lg text-blue-500 font-bold font-heading">
           ${totalItemPrice}
-        </p>
+        </div>
       </div>
     </div>
   );
