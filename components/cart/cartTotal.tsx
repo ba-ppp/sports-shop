@@ -3,15 +3,23 @@
 import { subTotalPriceAtom } from "@/store/cart.store";
 import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 type Props = {
   hasCheckoutBtn?: boolean;
 };
-export const CartTotal = (props: Props) => {
+export default function CartTotal(props: Props) {
   const { hasCheckoutBtn } = props;
 
   const [subTotal] = useAtom(subTotalPriceAtom);
   const router = useRouter();
+  const [isLoading, toggleLoading] = useState(true);
+
+  // useEffect(() => {
+  //   toggleLoading(false);
+  // }, [])
+  
+  // if (isLoading) return null;
 
   return (
     <div className="p-6 md:p-12 bg-blue-300">
