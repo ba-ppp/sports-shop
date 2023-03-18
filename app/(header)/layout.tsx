@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from 'next/link';
 // import "./globals.css";
 
 export default function RootLayout({
@@ -6,6 +7,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
   return (
     <html lang="en">
       {/*
@@ -54,7 +56,7 @@ export default function RootLayout({
                   ></path>
                 </svg>
               </a>
-              <a className="flex items-center" href="/cart">
+              <Link href="/cart" className="flex items-center" >
                 <svg
                   className="mr-3"
                   width="23"
@@ -81,7 +83,7 @@ export default function RootLayout({
                 <span className="inline-block w-6 h-6 text-center bg-orange-300 rounded-full font-semibold font-heading text-white">
                   3
                 </span>
-              </a>
+              </Link>
             </div>
             <button className="flex-shrink-0 hidden xl:block px-8 border-l">
               <a

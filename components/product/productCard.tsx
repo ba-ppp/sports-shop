@@ -1,7 +1,9 @@
 "use client";
 
 import { cartAtom } from "@/store/cart.store";
+import { setCartLocalStorage } from "@/utils/utils";
 import { useSetAtom } from "jotai";
+import toast, { Toaster } from "react-hot-toast";
 
 type Props = {
   item: ProductCardItem;
@@ -20,8 +22,9 @@ export const ProductCard = (props: Props) => {
   const handleAddToCart = () => {
     setCartAtom((prev) => {
       const isExist = prev.find((item) => item.id === id);
+      let newCart = [];
       if (isExist) {
-        return prev.map((item) => {
+        newCart = prev.map((item) => {
           if (item.id === id) {
             return {
               ...item,
@@ -30,19 +33,24 @@ export const ProductCard = (props: Props) => {
           }
           return item;
         });
+      } else {
+        newCart = [
+          ...prev,
+          {
+            id,
+            name,
+            price,
+            discountPrice,
+            imageURL,
+            quantity: 1,
+          },
+        ];
       }
-      return [
-        ...prev,
-        {
-          id,
-          name,
-          price,
-          discountPrice,
-          imageURL,
-          quantity: 1,
-        },
-      ];
+
+      setCartLocalStorage(newCart);
+      return newCart;
     });
+    toast.success("Added to cart");
   };
 
   return (
@@ -58,15 +66,15 @@ export const ProductCard = (props: Props) => {
             alt=""
           />
           <h3 className="mb-2 text-xl font-bold font-heading">{name}</h3>
-          <p className="text-lg font-bold font-heading text-blue-500">
+          <div className="text-lg font-bold font-heading text-blue-500">
             <span>${discountPrice}</span>
             <span className="text-xs text-gray-500 font-semibold font-heading line-through">
               ${price}
             </span>
-          </p>
+          </div>
         </a>
         <div
-          className="ml-auto mr-2 flex items-center justify-center w-12 h-12 border rounded-lg hover:border-gray-500"
+          className="cursor-pointer ml-auto mr-2 flex items-center justify-center w-12 h-12 border rounded-lg hover:border-gray-500"
           onClick={handleAddToCart}
         >
           <svg
@@ -88,6 +96,7 @@ export const ProductCard = (props: Props) => {
           </svg>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };
