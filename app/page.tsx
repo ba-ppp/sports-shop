@@ -3,8 +3,8 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-      <section className="bg-blue-300 bg-opacity-20">
-        <div className="py-2 bg-[#1c3fb7]">
+      <section className="bg-blue-500 bg-opacity-20">
+        <div className="py-2 bg-blue-500">
           <div className="flex items-center justify-center">
             <svg
               className="mr-2"

@@ -1,5 +1,6 @@
 "use client";
 
+import { TableRow } from "@/types/types";
 import dynamic from "next/dynamic";
 
 const VirtualRow = dynamic(
@@ -12,11 +13,10 @@ const VirtualRow = dynamic(
 type Props = {
   tableName: string;
   labelList: string[];
-  dataList: any[];
-  isProduct?: boolean;
+  dataList: TableRow[];
 };
 export const VirtualTable = (props: Props) => {
-  const { tableName, labelList, dataList, isProduct } = props;
+  const { tableName, labelList, dataList } = props;
 
   const handleEditRow = (id: string) => {};
 
@@ -80,7 +80,6 @@ export const VirtualTable = (props: Props) => {
                 <tbody>
                   {dataList.map((data, i) => (
                     <VirtualRow
-                      isProduct={isProduct}
                       key={i}
                       item={data}
                       handleEditRow={handleEditRow}

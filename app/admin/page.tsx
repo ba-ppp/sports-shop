@@ -215,7 +215,7 @@ export default function Page() {
                   </div>
                 </div>
                 <div className="">
-                <ColumnChart />
+                  <ColumnChart />
                 </div>
               </div>
             </div>

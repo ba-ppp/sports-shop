@@ -18,7 +18,7 @@ export default function RootLayout({
 
       <body>
         <>
-          <nav className="relative flex justify-between bg-[#5475e5] bg-opacity-70">
+          <nav className="relative flex justify-between bg-blue-trizzle-700 bg-opacity-70">
             <div className="px-12 py-8 flex w-full items-center">
               <a
                 className="flex-shrink-0 text-3xl font-bold font-heading"
