@@ -2,22 +2,25 @@
 
 import { TableRow } from "@/types/types";
 import { isEmpty, map } from "lodash";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 type Props = {
   item: TableRow;
-  handleDeleteRow: (id: string) => void;
-  handleEditRow: (id: string) => void;
+  handleDeleteRow?: (id: string) => void;
+  handleEditRow?: (id: string, newValue: string) => void;
 };
 export const VirtualRow = (props: Props) => {
   const { item, handleDeleteRow, handleEditRow } = props;
 
   const [isEditing, toggleEditing] = useState(false);
+  const [newValue, setNewValue] = useState(item?.editableCell?.Name || "");
+
+  const inputRef = useRef<any>(null);
 
   const handleOnClickEditRow = () => {
     if (isEditing) {
       // Save the changes
-      handleEditRow(item?.id);
+      handleEditRow?.(item?.id, newValue);
       toggleEditing(false);
       return;
     }
@@ -26,7 +29,7 @@ export const VirtualRow = (props: Props) => {
 
   const handleOnClickDeleteRow = () => {
     // Delete the row
-    handleDeleteRow(item?.id);
+    handleDeleteRow?.(item?.id);
   };
 
   return (
@@ -54,11 +57,12 @@ export const VirtualRow = (props: Props) => {
                 <input
                   className="flex-1 md:flex-none px-2 py-2 placeholder-gray-800 font-normal font-heading border rounded-md"
                   type="text"
-                  placeholder={value}
+                  value={newValue}
+                  onChange={(e) => setNewValue(e.target.value)}
                 />
               ) : (
                 <span className="text-sm font-medium text-gray-trizzle-100">
-                  {value}
+                  {newValue}
                 </span>
               )}
             </div>

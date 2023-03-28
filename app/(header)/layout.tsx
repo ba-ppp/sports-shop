@@ -1,13 +1,17 @@
+import dynamic from "next/dynamic";
 import Image from "next/image";
-import Link from 'next/link';
+import Link from "next/link";
 // import "./globals.css";
+
+const CartAmount = dynamic(() => import("@/components/home/cartAmount"), {
+  ssr: false,
+});
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-
   return (
     <html lang="en">
       {/*
@@ -36,7 +40,6 @@ export default function RootLayout({
                   <div className="text-xl text-white">Sport Shop</div>
                 </div>
               </a>
-             
             </div>
             <div className="hidden xl:flex items-center justify-end mr-12">
               <a className="mr-10" href="#">
@@ -56,7 +59,7 @@ export default function RootLayout({
                   ></path>
                 </svg>
               </a>
-              <Link href="/cart" className="flex items-center" >
+              <Link href="/cart" className="flex items-center">
                 <svg
                   className="mr-3"
                   width="23"
@@ -80,9 +83,7 @@ export default function RootLayout({
                     strokeLinejoin="round"
                   ></path>
                 </svg>
-                <span className="inline-block w-6 h-6 text-center bg-orange-300 rounded-full font-semibold font-heading text-white">
-                  3
-                </span>
+                <CartAmount />
               </Link>
             </div>
             <button className="flex-shrink-0 hidden xl:block px-8 border-l">
@@ -127,9 +128,7 @@ export default function RootLayout({
                   strokeLinejoin="round"
                 ></path>
               </svg>
-              <span className="inline-block w-6 h-6 text-center text-white bg-orange-300 rounded-full font-semibold font-heading">
-                3
-              </span>
+              <CartAmount />
             </a>
             <a className="navbar-burger self-center mr-12 xl:hidden" href="#">
               <svg

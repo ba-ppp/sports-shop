@@ -31,3 +31,12 @@ export interface TableRow {
     inforCell?: KeyValue;
     status?: StatusCell;
 }
+
+export interface FetchData {
+    data: Category[];
+}
+
+export interface Category {
+    categoryId: string;
+    name: string;
+}
