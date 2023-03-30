@@ -2,219 +2,42 @@ import { Product } from "@/components/product/product";
 import { ROOT_API } from "@/constant/env";
 import { routes } from "@/constant/routes";
 import { ResponseStatusCode } from "@/enums/enums";
+import { FetchData } from "@/types/types";
 
-async function getCategories() {
+async function getCategories(): Promise<FetchData | null> {
   try {
     const res = await fetch(`${ROOT_API}/${routes.categories}`);
-    // The return value is *not* serialized
-    // You can return Date, Map, Set, etc.
 
-    // Recommendation: handle errors
-    if (res.status === ResponseStatusCode.OK) {
-      // This will activate the closest `error.js` Error Boundary
-      const data = await res.json();
-      return data;
-    }
+    if (res.status !== ResponseStatusCode.OK) return null;
+    // This will activate the closest `error.js` Error Boundary
+    const data: FetchData = await res.json();
+    // console.log('data', data)
+    return data;
   } catch (error) {
     console.log(error);
+    return null;
   }
 }
 
 export default async function Products() {
   const categories = await getCategories();
-  console.log(categories);
-
   return (
     <section className="py-20 bg-gray-100">
       <div className="container mx-auto px-4">
-        <div className="flex flex-wrap -mx-4 mb-20 items-center justify-between">
-          <div className="w-full lg:w-auto px-4 flex flex-wrap items-center">
-            <a
-              className="inline-block mr-3 h-full p-4 bg-white rounded-md border"
-              href="#"
-            >
-              <svg
-                width="20"
-                height="24"
-                viewBox="0 0 20 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect width="4" height="4" rx="2" fill="#2B51C6"></rect>
-                <rect x="8" width="4" height="4" rx="2" fill="#2B51C6"></rect>
-                <rect x="16" width="4" height="4" rx="2" fill="#2B51C6"></rect>
-                <rect y="10" width="4" height="4" rx="2" fill="#2B51C6"></rect>
-                <rect
-                  x="8"
-                  y="10"
-                  width="4"
-                  height="4"
-                  rx="2"
-                  fill="#2B51C6"
-                ></rect>
-                <rect
-                  x="16"
-                  y="10"
-                  width="4"
-                  height="4"
-                  rx="2"
-                  fill="#2B51C6"
-                ></rect>
-                <rect y="20" width="4" height="4" rx="2" fill="#2B51C6"></rect>
-                <rect
-                  x="8"
-                  y="20"
-                  width="4"
-                  height="4"
-                  rx="2"
-                  fill="#2B51C6"
-                ></rect>
-                <rect
-                  x="16"
-                  y="20"
-                  width="4"
-                  height="4"
-                  rx="2"
-                  fill="#2B51C6"
-                ></rect>
-              </svg>
-            </a>
-            <a
-              className="inline-block h-full p-4 hover:bg-white border rounded-md group"
-              href="#"
-            >
-              <svg
-                className="text-gray-200 group-hover:text-blue-300"
-                width="28"
-                height="24"
-                viewBox="0 0 28 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect width="4" height="4" rx="2" fill="currentColor"></rect>
-                <rect
-                  x="8"
-                  width="4"
-                  height="4"
-                  rx="2"
-                  fill="currentColor"
-                ></rect>
-                <rect
-                  x="16"
-                  width="4"
-                  height="4"
-                  rx="2"
-                  fill="currentColor"
-                ></rect>
-                <rect
-                  x="24"
-                  width="4"
-                  height="4"
-                  rx="2"
-                  fill="currentColor"
-                ></rect>
-                <rect
-                  y="10"
-                  width="4"
-                  height="4"
-                  rx="2"
-                  fill="currentColor"
-                ></rect>
-                <rect
-                  x="8"
-                  y="10"
-                  width="4"
-                  height="4"
-                  rx="2"
-                  fill="currentColor"
-                ></rect>
-                <rect
-                  x="16"
-                  y="10"
-                  width="4"
-                  height="4"
-                  rx="2"
-                  fill="currentColor"
-                ></rect>
-                <rect
-                  x="24"
-                  y="10"
-                  width="4"
-                  height="4"
-                  rx="2"
-                  fill="currentColor"
-                ></rect>
-                <rect
-                  y="20"
-                  width="4"
-                  height="4"
-                  rx="2"
-                  fill="currentColor"
-                ></rect>
-                <rect
-                  x="8"
-                  y="20"
-                  width="4"
-                  height="4"
-                  rx="2"
-                  fill="currentColor"
-                ></rect>
-                <rect
-                  x="16"
-                  y="20"
-                  width="4"
-                  height="4"
-                  rx="2"
-                  fill="currentColor"
-                ></rect>
-                <rect
-                  x="24"
-                  y="20"
-                  width="4"
-                  height="4"
-                  rx="2"
-                  fill="currentColor"
-                ></rect>
-              </svg>
-            </a>
-          </div>
-        </div>
         <div className="flex flex-wrap -mx-3 mb-24">
           <div className="w-full lg:hidden px-3">
             <div className="flex flex-wrap -mx-2">
               <div className="w-1/2 md:w-1/3 px-2 mb-4">
                 <div className="py-6 px-2 text-center bg-gray-50">
                   <a className="font-bold font-heading" href="#">
-                    Category {categories?.id}
+                    Category
                   </a>
                   <ul className="hidden text-left mt-6">
-                    <li className="mb-4">
-                      <a href="#">New in</a>
-                    </li>
-                    <li className="mb-4">
-                      <a href="#">Activewear</a>
-                    </li>
-                    <li className="mb-4">
-                      <a href="#">Hoodies &amp; Sweatshirts</a>
-                    </li>
-                    <li className="mb-4">
-                      <a href="#">Jackets</a>
-                    </li>
-                    <li className="mb-4">
-                      <a href="#">Multipacks</a>
-                    </li>
-                    <li className="mb-4">
-                      <a href="#">Bags</a>
-                    </li>
-                    <li className="mb-4">
-                      <a href="#">Sports</a>
-                    </li>
-                    <li className="mb-4">
-                      <a href="#">Gifts</a>
-                    </li>
-                    <li>
-                      <a href="#">Notes</a>
-                    </li>
+                    {categories?.data.map((category, idx) => (
+                      <li key={idx} className="mb-4">
+                        <a href="#">{category.name}</a>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -337,51 +160,11 @@ export default async function Products() {
             <div className="mb-6 py-10 px-12 bg-gray-50">
               <h3 className="mb-8 text-2xl font-bold font-heading">Category</h3>
               <ul>
-                <li className="mb-4">
-                  <a className="text-lg" href="#">
-                    New in
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a className="text-lg" href="#">
-                    Activewear
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a className="text-lg" href="#">
-                    Hoodies &amp; Sweatshirts
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a className="text-lg" href="#">
-                    Jackets
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a className="text-lg" href="#">
-                    Multipacks
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a className="text-lg" href="#">
-                    Bags
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a className="text-lg" href="#">
-                    Sports
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a className="text-lg" href="#">
-                    Gifts
-                  </a>
-                </li>
-                <li>
-                  <a className="text-lg" href="#">
-                    Notes
-                  </a>
-                </li>
+                {categories?.data.map((category, idx) => (
+                  <li key={idx} className="mb-4">
+                    <a href="#">{category.name}</a>
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="mb-6 py-10 px-12 bg-gray-50">
