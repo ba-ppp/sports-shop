@@ -14,13 +14,24 @@ type Props = {
   tableName: string;
   labelList: string[];
   dataList: TableRow[];
-  handleEditRow?: (id: string, newValue: string) => void;
+  handleEditRow?: (
+    id: string,
+    newValue: string,
+    newPrice?: string,
+    newImg?: File
+  ) => void;
   handleDeleteRow?: (id: string) => void;
   handleAddNewRow?: () => void;
 };
 export const VirtualTable = (props: Props) => {
-  const { tableName, labelList, dataList, handleEditRow, handleDeleteRow, handleAddNewRow } =
-    props;
+  const {
+    tableName,
+    labelList,
+    dataList,
+    handleEditRow,
+    handleDeleteRow,
+    handleAddNewRow,
+  } = props;
 
   return (
     <section className="py-3">

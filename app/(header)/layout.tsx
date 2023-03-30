@@ -1,3 +1,4 @@
+import { SignInAvt } from "@/components/home/signInAvt";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
@@ -87,19 +88,7 @@ export default function RootLayout({
               </Link>
             </div>
             <button className="flex-shrink-0 hidden xl:block px-8 border-l">
-              <a
-                className="inline-flex items-center font-semibold font-heading"
-                href="/signin"
-              >
-                <Image
-                  className="object-cover mr-3"
-                  src="/avatar-none.svg"
-                  alt=""
-                  width={32}
-                  height={31}
-                />
-                <span className="text-white">Sign&nbsp;In</span>
-              </a>
+              <SignInAvt />
             </button>
             <a
               className="xl:hidden flex mr-6 items-center text-gray-900"

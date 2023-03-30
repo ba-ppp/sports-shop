@@ -59,3 +59,22 @@ export const handleChangeTableData = (data: any): TableRow[] => {
     };
   });
 };
+
+export const handleChangeProductData = (data: any): TableRow[] => {
+  return data.map((item: any) => {
+    return {
+      id: item?.productId,
+      editableCell: {
+        Name: item?.name,
+        Price: item?.price,
+      },
+      inforCell: {
+        Status: "",
+        Image: "",
+      },
+      status: {
+        isActive: true,
+      },
+    };
+  });
+}

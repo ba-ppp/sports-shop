@@ -2,25 +2,31 @@
 
 import { TableRow } from "@/types/types";
 import { isEmpty, map } from "lodash";
-import { useRef, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 
 type Props = {
   item: TableRow;
   handleDeleteRow?: (id: string) => void;
-  handleEditRow?: (id: string, newValue: string) => void;
+  handleEditRow?: (
+    id: string,
+    newValue: string,
+    newPrice?: string,
+    newImg?: File
+  ) => void;
 };
 export const VirtualRow = (props: Props) => {
   const { item, handleDeleteRow, handleEditRow } = props;
 
   const [isEditing, toggleEditing] = useState(false);
-  const [newValue, setNewValue] = useState(item?.editableCell?.Name || "");
 
-  const inputRef = useRef<any>(null);
+  const [newValue, setNewValue] = useState(item?.editableCell?.Name || "");
+  const [newPrice, setNewPrice] = useState(item?.editableCell?.Price || "");
+  const [newImg, setNewImg] = useState<File>();
 
   const handleOnClickEditRow = () => {
     if (isEditing) {
       // Save the changes
-      handleEditRow?.(item?.id, newValue);
+      handleEditRow?.(item?.id, newValue, newPrice, newImg);
       toggleEditing(false);
       return;
     }
@@ -31,6 +37,23 @@ export const VirtualRow = (props: Props) => {
     // Delete the row
     handleDeleteRow?.(item?.id);
   };
+
+  const handleInputValue = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.name === "Name") {
+      setNewValue(e.target.value);
+    } else {
+      setNewPrice(e.target.value);
+    }
+  };
+
+  const handleUploadImage = (e: ChangeEvent<HTMLInputElement>) => {
+    const uploadedFile = e.target?.files?.[0];
+
+    if (isEmpty(uploadedFile)) return;
+
+    setNewImg(uploadedFile)
+    
+  }
 
   return (
     <tr>
@@ -50,19 +73,20 @@ export const VirtualRow = (props: Props) => {
           </div>
         </td>
 
-        {map(item.editableCell, (value, key) => (
+        {map(item.editableCell, (_, key) => (
           <td className="p-0" key={key}>
             <div className="flex justify-center items-center h-16 px-6">
               {isEditing ? (
                 <input
                   className="flex-1 md:flex-none px-2 py-2 placeholder-gray-800 font-normal font-heading border rounded-md"
                   type="text"
-                  value={newValue}
-                  onChange={(e) => setNewValue(e.target.value)}
+                  name={key}
+                  value={key === "Name" ? newValue : newPrice}
+                  onChange={handleInputValue}
                 />
               ) : (
                 <span className="text-sm font-medium text-gray-trizzle-100">
-                  {newValue}
+                  {key === "Name" ? newValue : `${newPrice}$`}
                 </span>
               )}
             </div>
@@ -70,7 +94,7 @@ export const VirtualRow = (props: Props) => {
         ))}
 
         {map(item?.inforCell, (value, key) => {
-          if (key !== "Status")
+          if (!["Status", "Image"].includes(key))
             return (
               <td className="p-0" key={key}>
                 <div className="flex justify-center items-center h-16 px-6">
@@ -81,6 +105,9 @@ export const VirtualRow = (props: Props) => {
               </td>
             );
         })}
+        <td className="p-0">
+          <input type="file" onChange={handleUploadImage}/>
+        </td>
 
         <td className="p-0">
           <div className="flex justify-center items-center h-16 px-6">
