@@ -11,3 +11,32 @@ export interface CartItem {
     imageURL?: string;
     quantity: number;
 }
+
+export interface KeyValue {
+    [key: string]: string;
+}
+
+export interface StatusCell {
+    isActive?: boolean;
+    isLow?: boolean;
+    isOut?: boolean;
+    isIn?: boolean;
+    isDelivered?: boolean;
+    isPending?: boolean;
+}
+
+export interface TableRow {
+    id: string;
+    editableCell?: KeyValue;
+    inforCell?: KeyValue;
+    status?: StatusCell;
+}
+
+export interface FetchData {
+    data: Category[];
+}
+
+export interface Category {
+    categoryId: string;
+    name: string;
+}

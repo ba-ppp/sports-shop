@@ -50,7 +50,7 @@ export default function CartTotal(props: Props) {
       </div>
       {hasCheckoutBtn && (
         <div
-          className="block w-full py-4 bg-orange-300 hover:bg-orange-400 text-center text-white font-bold font-heading uppercase rounded-md transition duration-200"
+          className="cursor-pointer block w-full py-4 bg-orange-300 hover:bg-orange-400 text-center text-white font-bold font-heading uppercase rounded-md transition duration-200"
           onClick={() => router.push("/cart/checkout")}
         >
           Go to Checkout

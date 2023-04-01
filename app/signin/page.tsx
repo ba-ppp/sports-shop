@@ -31,8 +31,6 @@ export default function Signin() {
       if (response.status === ResponseStatusCode.OK) {
         setTokenLocalStorage(response.data)
         router.push("/");
-      } else {
-        console.log(response.data);
       }
     } catch (error) {
       console.log(error);

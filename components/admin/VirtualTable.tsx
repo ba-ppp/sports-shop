@@ -1,5 +1,6 @@
 "use client";
 
+import { TableRow } from "@/types/types";
 import dynamic from "next/dynamic";
 
 const VirtualRow = dynamic(
@@ -12,15 +13,26 @@ const VirtualRow = dynamic(
 type Props = {
   tableName: string;
   labelList: string[];
-  dataList: any[];
-  isProduct?: boolean;
+  dataList: TableRow[];
+  handleEditRow?: (
+    id: string,
+    newValue: string,
+    newPrice?: string,
+    newImg?: File
+  ) => void;
+  handleDeleteRow?: (id: string) => void;
+  handleAddNewRow?: () => void;
 };
 export const VirtualTable = (props: Props) => {
-  const { tableName, labelList, dataList, isProduct } = props;
+  const {
+    tableName,
+    labelList,
+    dataList,
+    handleEditRow,
+    handleDeleteRow,
+    handleAddNewRow,
+  } = props;
 
-  const handleEditRow = (id: string) => {};
-
-  const handleDeleteRow = (id: string) => {};
   return (
     <section className="py-3">
       <div className="container px-4 mx-auto">
@@ -30,7 +42,7 @@ export const VirtualTable = (props: Props) => {
               <h4 className="text-lg text-gray-trizzle-100 font-semibold mb-6">
                 {tableName}
               </h4>
-              <div className="md:flex items-center">
+              <div className="md:flex items-center justify-between">
                 <div className="inline-flex items-center h-14 max-w-xxs w-full max-w-sm py-4 px-3 border border-gray-trizzle-400 hover:border-white focus-within:border-green-500 rounded-lg">
                   <svg
                     width="14"
@@ -50,6 +62,22 @@ export const VirtualTable = (props: Props) => {
                     placeholder={`Search ${tableName}...`}
                     type="search"
                   />
+                </div>
+                <div className="w-full sm:w-auto px-4">
+                  <div>
+                    <a
+                      className="inline-block py-2 px-4 mr-3 text-xs text-center font-semibold leading-normal text-gray-trizzle-400 bg-gray-trizzle-600 hover:bg-gray-trizzle-700 rounded-lg transition duration-200"
+                      href="#"
+                    >
+                      Cancel
+                    </a>
+                    <div
+                      className="inline-block py-2 px-4 text-xs text-center font-semibold leading-normal text-blue-50 bg-blue-500 hover:bg-blue-600 rounded-lg transition duration-200"
+                      onClick={handleAddNewRow}
+                    >
+                      Add
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -80,7 +108,6 @@ export const VirtualTable = (props: Props) => {
                 <tbody>
                   {dataList.map((data, i) => (
                     <VirtualRow
-                      isProduct={isProduct}
                       key={i}
                       item={data}
                       handleEditRow={handleEditRow}
