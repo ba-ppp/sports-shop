@@ -91,6 +91,7 @@ export default function Page() {
       handleAddNewRow={handleAddNewRow}
       handleEditRow={handleEditRow}
       handleDeleteRow={handleDeleteRow}
+      hasImageField
     />
   );
 }

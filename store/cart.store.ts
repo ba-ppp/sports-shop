@@ -12,7 +12,9 @@ export const cartCountAtom = atom((get) => {
 export const subTotalPriceAtom = atom((get) => {
   const cart = get(cartAtom);
   return cart.reduce(
-    (acc, item) => acc + parseFloat(item.discountPrice) * item.quantity,
+    (acc, item) => acc + parseFloat(item?.price ?? '0') * item.quantity,
     0
   );
 });
+
+

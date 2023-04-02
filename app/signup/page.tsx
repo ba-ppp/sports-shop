@@ -1,9 +1,9 @@
 "use client";
 
 import axios from "axios";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { ResponseStatusCode } from "../../enums/enums";
 import { setTokenLocalStorage } from "../../utils/utils";
 
@@ -37,10 +37,18 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const res = await axios.post("/api/auth/signup", {
+      const signUpAPI = axios.post("/api/auth/signup", {
         email,
         password,
       });
+
+      toast.promise(signUpAPI, {
+        loading: "Signing up...",
+        success: "Signed up successfully",
+        error: "Failed to sign up",
+      });
+
+      const res = await signUpAPI;
       if (res.status === ResponseStatusCode.OK) {
         setTokenLocalStorage(res.data);
         router.push("/");
@@ -54,6 +62,7 @@ export default function Login() {
 
   return (
     <section className="py-20 bg-blue-800 overflow-x-hidden">
+      <Toaster />
       <div className="relative container px-4 mx-auto">
         <div className="relative max-w-4xl mx-auto">
           <div className="absolute inset-0 border border-gray-300 my-24 -ml-4 -mr-4"></div>

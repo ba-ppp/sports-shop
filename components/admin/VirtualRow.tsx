@@ -13,9 +13,10 @@ type Props = {
     newPrice?: string,
     newImg?: File
   ) => void;
+  hasImgField?: boolean;
 };
 export const VirtualRow = (props: Props) => {
-  const { item, handleDeleteRow, handleEditRow } = props;
+  const { item, handleDeleteRow, handleEditRow, hasImgField } = props;
 
   const [isEditing, toggleEditing] = useState(false);
 
@@ -51,9 +52,8 @@ export const VirtualRow = (props: Props) => {
 
     if (isEmpty(uploadedFile)) return;
 
-    setNewImg(uploadedFile)
-    
-  }
+    setNewImg(uploadedFile);
+  };
 
   return (
     <tr>
@@ -105,9 +105,16 @@ export const VirtualRow = (props: Props) => {
               </td>
             );
         })}
-        <td className="p-0">
-          <input type="file" onChange={handleUploadImage}/>
-        </td>
+        {console.log(item.inforCell?.Image)}
+        {hasImgField && (
+          <td className="p-0 h-16 px-6 flex justify-center items-center">
+            {isEditing ? (
+              <input type="file" onChange={handleUploadImage} />
+            ) : (
+              <img height={52} width={52} src={item.inforCell?.Image} />
+            )}
+          </td>
+        )}
 
         <td className="p-0">
           <div className="flex justify-center items-center h-16 px-6">
