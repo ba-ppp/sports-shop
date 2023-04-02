@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { ResponseStatusCode } from "../../enums/enums";
 import { setTokenLocalStorage } from "../../utils/utils";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Signin() {
   const [email, setEmail] = useState("");
@@ -24,10 +25,16 @@ export default function Signin() {
   const handleSignIn = async (e: any) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/auth/signin", {
+      const signInAPI = axios.post("/api/auth/signin", {
         email,
         password,
       });
+      toast.promise(signInAPI, {
+        loading: "Signing in...",
+        success: "Signed in successfully",
+        error: "Failed to sign in",
+      })
+      const response = await signInAPI;
       if (response.status === ResponseStatusCode.OK) {
         setTokenLocalStorage(response.data)
         router.push("/");
@@ -39,6 +46,7 @@ export default function Signin() {
 
   return (
     <section className="py-20 bg-gray-100 overflow-x-hidden">
+      <Toaster />
       <div className="relative container px-4 mx-auto">
         <div className="absolute inset-0 bg-blue-200 my-24 -ml-4"></div>
         <div className="relative flex flex-wrap bg-white">

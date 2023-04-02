@@ -1,8 +1,11 @@
-import { SignInAvt } from "@/components/home/signInAvt";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 
 const CartAmount = dynamic(() => import("@/components/home/cartAmount"), {
+  ssr: false,
+});
+
+const SignInAvt = dynamic(() => import("@/components/home/signInAvt"), {
   ssr: false,
 });
 
@@ -105,7 +108,7 @@ export default function Home() {
             </ul>
           </div>
           <div className="hidden xl:flex items-center justify-end mr-12">
-            <a className="mr-10" href="#">
+            <a className="mr-10" href="/history">
               <svg
                 width="23"
                 height="20"

@@ -10,6 +10,7 @@ export async function GET() {
     const res = await axios.get(`${ROOT_API}/${routes.products}`);
     if (res.status === ResponseStatusCode.OK) {
       const formattedData = handleChangeProductData(res.data);
+      console.log('formattedData', formattedData)
       return NextResponse.json(formattedData);
     }
   } catch (err) {

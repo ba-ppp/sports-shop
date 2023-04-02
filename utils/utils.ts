@@ -12,6 +12,11 @@ export const getAccessToken = (): string => {
   return localStorage.getItem("access_token") || "";
 };
 
+export const getRefreshToken = (): string => {
+  if (typeof window === "undefined") return "";
+  return localStorage.getItem("refresh_token") || "";
+}
+
 export const isSignin = (): boolean => {
   if (typeof window === "undefined") return false;
   const token = localStorage.getItem("access_token") || "";
@@ -60,17 +65,37 @@ export const handleChangeTableData = (data: any): TableRow[] => {
   });
 };
 
-export const handleChangeProductData = (data: any): TableRow[] => {
+export const handleChangeHistoriesData = (data: any): TableRow[] => {
   return data.map((item: any) => {
     return {
-      id: item?.productId,
+      id: item?.id,
+      editableCell: {
+        Name: item?.name
+      },
+      inforCell: {
+        Status: "",
+        Date: item?.updatedDate
+      },
+      status: {
+        isPending: !item?.onDelivery,
+        isDelivered: item?.onDelivery,
+      },
+    };
+  });
+};
+
+export const handleChangeProductData = (data: any): TableRow[] => {
+  console.log('data', data)
+  return data.map((item: any) => {
+    return {
+      id: item?.id,
       editableCell: {
         Name: item?.name,
         Price: item?.price,
       },
       inforCell: {
         Status: "",
-        Image: "",
+        Image: item?.url,
       },
       status: {
         isActive: true,

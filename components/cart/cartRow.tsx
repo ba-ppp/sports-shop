@@ -43,7 +43,7 @@ export const CartRow = (props: Props) => {
     }
   };
 
-  const totalItemPrice = (quantity * parseFloat(discountPrice)).toFixed(2);
+  const totalItemPrice = (quantity * parseFloat(price)).toFixed(0);
   return (
     <div className="flex flex-wrap items-center -mx-4 mb-6 md:mb-3">
       <div className="w-full md:w-4/6 lg:w-6/12 px-4 mb-6 md:mb-0">
@@ -65,9 +65,8 @@ export const CartRow = (props: Props) => {
       </div>
       <div className="hidden lg:block lg:w-2/12 px-4">
         <div className="text-lg text-blue-500 font-bold font-heading">
-          ${discountPrice}
+          đ{price}
         </div>
-        <span className="text-xs text-gray-500 line-through">${price}</span>
       </div>
       <div className="w-auto md:w-1/6 lg:w-2/12 px-4">
         <div className="inline-flex items-center px-4 font-semibold font-heading text-gray-500 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md">
@@ -128,7 +127,7 @@ export const CartRow = (props: Props) => {
       </div>
       <div className="w-auto md:w-1/6 lg:w-2/12 px-4 text-right">
         <div className="text-lg text-blue-500 font-bold font-heading">
-          ${totalItemPrice}
+          đ{totalItemPrice}
         </div>
       </div>
     </div>
