@@ -29,7 +29,7 @@ export default function RootLayout({
             <div className="px-12 py-8 flex w-full items-center">
               <a
                 className="flex-shrink-0 text-3xl font-bold font-heading"
-                href="#"
+                href="/"
               >
                 <div className="flex items-center">
                   <Image
@@ -62,7 +62,7 @@ export default function RootLayout({
                   ></path>
                 </svg>
               </Link>
-              <Link href="/cart" className="flex items-center">
+              <Link href="/history" className="flex items-center">
                 <svg
                   className="mr-3"
                   width="23"

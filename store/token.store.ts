@@ -26,8 +26,8 @@ export const tokenAtom = atom(
       const response = await fetch(`${ROOT_API}/${routes.renewToken}`, {
         method: "POST",
         body: JSON.stringify({
-          access_token: getAccessToken(),
           refresh_token: getRefreshToken(),
+          access_token: getAccessToken(),
         }),
       });
 

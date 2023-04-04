@@ -6,7 +6,6 @@ import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
-  console.log('request', request.headers)
   try {
     const res = await axios.get(`${ROOT_API}/${routes.histories}`, {
       headers: {
@@ -14,6 +13,7 @@ export async function GET(request: NextRequest) {
       }
     });
     if (res.status === ResponseStatusCode.OK) {
+      console.log(res.data)
       const formattedData = handleChangeHistoriesData(res.data);
       return NextResponse.json(formattedData);
     }

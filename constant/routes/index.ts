@@ -4,5 +4,6 @@ export const routes = {
     categories: 'api/categories',
     products: 'api/products',
     histories: 'api/histories',
-    renewToken: 'api/users/renewtoken'
+    renewToken: 'api/users/renewtoken',
+    productSizes: '/api/productsizes',
 }

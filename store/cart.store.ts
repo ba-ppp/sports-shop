@@ -1,8 +1,8 @@
 import { CartItem } from "@/types/types";
-import { getCartLocalStorage } from "@/utils/utils";
+import { getCartLocalStorage, setCartLocalStorage } from "@/utils/utils";
 import { atom } from "jotai";
 
-export const cartAtom = atom<CartItem[]>(getCartLocalStorage());
+export const cartAtom = atom(getCartLocalStorage());
 
 export const cartCountAtom = atom((get) => {
   const cart = get(cartAtom);
