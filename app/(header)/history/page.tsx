@@ -33,7 +33,6 @@ export default function Page() {
           }
         };
       });
-      console.log('newData', newData)
       setDateList(newData);
     } catch (err) {
       console.log("err", err);

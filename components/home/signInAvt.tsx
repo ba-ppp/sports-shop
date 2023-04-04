@@ -10,7 +10,7 @@ import { ImageURL } from "../shared/imageURL";
 
 export default function SignInAvt() {
   const [token, setToken] = useAtom(tokenAtom);
- const [userProfile, _] = useAtom(userAtom)
+  const [userProfile, _] = useAtom(userAtom);
 
   const router = useRouter();
 
@@ -19,9 +19,8 @@ export default function SignInAvt() {
   };
 
   useEffect(() => {
-    setToken()
-
-  }, [token])
+    setToken();
+  }, [token]);
 
   return (
     <>
