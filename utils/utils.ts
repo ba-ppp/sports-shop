@@ -15,7 +15,7 @@ export const getAccessToken = (): string => {
 export const getRefreshToken = (): string => {
   if (typeof window === "undefined") return "";
   return localStorage.getItem("refresh_token") || "";
-}
+};
 
 export const isSignin = (): boolean => {
   if (typeof window === "undefined") return false;
@@ -53,7 +53,7 @@ export const handleChangeTableData = (data: any): TableRow[] => {
     return {
       id: item?.categoryId,
       editableCell: {
-        Name: item?.name
+        Name: item?.name,
       },
       inforCell: {
         Status: "",
@@ -65,16 +65,30 @@ export const handleChangeTableData = (data: any): TableRow[] => {
   });
 };
 
+export const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  const formattedDate = new Intl.DateTimeFormat("en-GB", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  }).format(date);
+
+  return formattedDate;
+};
+
 export const handleChangeHistoriesData = (data: any): TableRow[] => {
   return data.map((item: any) => {
     return {
       id: item?.id,
       editableCell: {
-        Name: item?.name
+        Name: item?.name,
       },
       inforCell: {
-        Status: "",
-        Date: item?.updatedDate
+        User: "",
+        Date: formatDate(item?.updatedDate),
       },
       status: {
         isPending: !item?.onDelivery,
@@ -85,7 +99,7 @@ export const handleChangeHistoriesData = (data: any): TableRow[] => {
 };
 
 export const handleChangeProductData = (data: any): TableRow[] => {
-  console.log('data', data)
+  console.log("data", data);
   return data.map((item: any) => {
     return {
       id: item?.id,
@@ -102,4 +116,4 @@ export const handleChangeProductData = (data: any): TableRow[] => {
       },
     };
   });
-}
+};

@@ -56,7 +56,7 @@ export const VirtualRow = (props: Props) => {
   };
 
   return (
-    <tr>
+    <tr className="cursor-pointer">
       <>
         <td className="p-0">
           <div className="flex justify-center items-center h-16 px-6">
@@ -105,7 +105,6 @@ export const VirtualRow = (props: Props) => {
               </td>
             );
         })}
-        {console.log(item.inforCell?.Image)}
         {hasImgField && (
           <td className="p-0 h-16 px-6 flex justify-center items-center">
             {isEditing ? (

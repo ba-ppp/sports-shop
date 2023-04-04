@@ -12,11 +12,8 @@ const CartTotal = dynamic(() => import("@/components/cart/cartTotal"), {
 
 export default function Page() {
   const [userInfo, _] = useAtom(userAtom);
-  const [formData, setFormData] = useState<UserProfile>(userInfo);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  
   return (
     <section className="py-20 bg-gray-100">
       <div className="container mx-auto px-4">
@@ -43,8 +40,7 @@ export default function Page() {
                     className="block w-full mt-4 py-4 px-4 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md"
                     type="email"
                     name="email"
-                    value={formData.email}
-                    onChange={handleChange}
+                    value={userInfo.email}
                     disabled
                   />
                 </div>
@@ -60,8 +56,7 @@ export default function Page() {
                     className="block w-full mt-4 py-4 px-4 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md"
                     type="text"
                     name="firstName"
-                    value={formData.firstName}
-                    onChange={handleChange}
+                    value={userInfo.firstName}
                     disabled
                   />
                 </div>
@@ -76,8 +71,7 @@ export default function Page() {
                     className="block w-full mt-4 py-4 px-4 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md"
                     type="text"
                     name="lastName"
-                    value={formData.lastName}
-                    onChange={handleChange}
+                    value={userInfo.lastName}
                     disabled
                   />
                 </div>
@@ -92,8 +86,7 @@ export default function Page() {
                     className="block w-full mt-4 py-4 px-4 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md"
                     type="text"
                     name="address"
-                    value={formData.address}
-                    onChange={handleChange}
+                    value={userInfo.address}
                     disabled
                   />
                 </div>
