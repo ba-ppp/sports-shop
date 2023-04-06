@@ -48,7 +48,6 @@ export default function CartTotal(props: Props) {
         success: "Ordered successfully",
         error: "Failed to submit cart",
       });
-
       await submitCart;
 
       setCart([] as CartItem[]);

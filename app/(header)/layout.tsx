@@ -62,7 +62,7 @@ export default function RootLayout({
                   ></path>
                 </svg>
               </Link>
-              <Link href="/cart" className="flex items-center">
+              <Link href="/history" className="flex items-center">
                 <svg
                   className="mr-3"
                   width="23"
