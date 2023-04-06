@@ -45,7 +45,7 @@ export default function RootLayout({
               </a>
             </div>
             <div className="hidden xl:flex items-center justify-end mr-12">
-            <Link href="/cart" className="mr-10">
+            <Link href="/history" className="mr-10">
                 <svg
                   width="23"
                   height="20"

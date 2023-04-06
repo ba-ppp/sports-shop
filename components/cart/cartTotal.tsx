@@ -33,19 +33,21 @@ export default function CartTotal(props: Props) {
     });
 
     try {
+      const submitCart = axios.post(
+        `${ROOT_API}/${routes.histories}`,
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${getAccessToken()}`,
+          },
+        }
+      );
 
-      const submitCart = axios.post(`${ROOT_API}/${routes.histories}`, payload, {
-        headers: {
-          Authorization: `Bearer ${getAccessToken()}`,
-        },
-      });
-  
       toast.promise(submitCart, {
         loading: "Ordering...",
         success: "Ordered successfully",
         error: "Failed to submit cart",
       });
-  
       await submitCart;
 
       setCart([] as CartItem[]);
@@ -58,45 +60,40 @@ export default function CartTotal(props: Props) {
     <>
       <Toaster />
 
-      <div className="p-5 md:p-12 bg-blue-300">
-        <div className="flex mb-8 items-center justify-between pb-5 border-b border-blue-100">
-          <span className="text-blue-50">Subtotal</span>
-          <span className="text-xl font-bold font-heading text-white">
-            đ{subTotal}
-          </span>
-        </div>
-        <h4 className="mb-2 text-xl font-bold font-heading text-white">
-          Shipping
-        </h4>
-        <div className="flex mb-2 justify-between items-center">
-          <span className="text-blue-50">Next day</span>
-          <span className="text-xl font-bold font-heading text-white">
-            đ{10000}
-          </span>
-        </div>
-
-        <div className="flex mb-2 justify-between items-center">
-          <span className="text-xl font-bold font-heading text-white">
-            Order total
-          </span>
-          <span className="text-xl font-bold font-heading text-white">
-            đ{subTotal + 10000}
-          </span>
-        </div>
-        {hasCheckoutBtn && (
-          <div
-            className="cursor-pointer block w-full py-4 bg-orange-300 hover:bg-orange-400 text-center text-white font-bold font-heading uppercase rounded-md transition duration-200"
-            onClick={() => router.push("/cart/checkout")}
-          >
-            Go to Checkout
+      <div className="mb-10">
+        <div className="py-3 px-10 bg-gray-100 rounded-full">
+          <div className="flex justify-between">
+            <span className="font-medium">Subtotal</span>
+            <span className="font-bold font-heading">{subTotal} đ</span>
           </div>
-        )}
+        </div>
+        <div className="py-3 px-10 rounded-full">
+          <div className="flex justify-between">
+            <span className="font-medium">Shipping</span>
+            <span className="font-bold font-heading">0 đ</span>
+          </div>
+        </div>
+        <div className="py-3 px-10 bg-gray-100 rounded-full">
+          <div className="flex justify-between">
+            <span className="font-medium">Tax</span>
+            <span className="font-bold font-heading">0</span>
+          </div>
+        </div>
+        <div className="py-3 px-10 rounded-full">
+          <div className="flex justify-between">
+            <span className="text-base md:text-xl font-bold font-heading">
+              Order Total
+            </span>
+            <span className="font-bold font-heading">{subTotal} đ</span>
+          </div>
+        </div>
       </div>
-      {!hasCheckoutBtn && (
-        <div onClick={handleApply} className="mb-10">
-          <div className="cursor-pointer w-full text-xl bg-gray-800 p-5 rounded-md text-white text-center mt-5">
-            Apply
-          </div>
+      {hasCheckoutBtn && (
+        <div
+          className="cursor-pointer block w-full py-4 bg-orange-300 hover:bg-orange-400 text-center text-white font-bold font-heading uppercase rounded-md transition duration-200"
+          onClick={() => router.push("/cart/checkout")}
+        >
+          Apply
         </div>
       )}
     </>

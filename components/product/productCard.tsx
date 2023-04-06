@@ -61,7 +61,7 @@ export const ProductCard = (props: Props) => {
           />
           <h3 className="mb-2 text-xl font-bold font-heading">{name}</h3>
           <div className="text-lg font-bold font-heading text-blue-500">
-            <span>${price}</span>
+            <span>{price} đ</span>
             {/* <span className="text-xs text-gray-500 font-semibold font-heading line-through">
               ${price}
             </span> */}
