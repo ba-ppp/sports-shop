@@ -3,15 +3,15 @@ import { ROOT_API } from "@/constant/env";
 import { routes } from "@/constant/routes";
 import { ResponseStatusCode } from "@/enums/enums";
 import { FetchData } from "@/types/types";
+import axios from "axios";
 
-async function getCategories(): Promise<FetchData | null> {
+async function getCategories(): Promise<any | null> {
   try {
-    const res = await fetch(`${ROOT_API}/${routes.categories}`);
+    const res = await axios.get(`${ROOT_API}/${routes.categories}`);
 
     if (res.status !== ResponseStatusCode.OK) return null;
     // This will activate the closest `error.js` Error Boundary
-    const data: FetchData = await res.json();
-    // console.log('data', data)
+    const data = res.data;
     return data;
   } catch (error) {
     console.log(error);
@@ -33,7 +33,7 @@ export default async function Products() {
                     Category
                   </a>
                   <ul className="hidden text-left mt-6">
-                    {categories?.data.map((category, idx) => (
+                    {categories?.map((category: any, idx: number) => (
                       <li key={idx} className="mb-4">
                         <a href="#">{category.name}</a>
                       </li>
@@ -160,7 +160,7 @@ export default async function Products() {
             <div className="mb-6 py-10 px-12 bg-gray-50">
               <h3 className="mb-8 text-2xl font-bold font-heading">Category</h3>
               <ul>
-                {categories?.data.map((category, idx) => (
+                {categories?.map((category: any, idx: number) => (
                   <li key={idx} className="mb-4">
                     <a href="#">{category.name}</a>
                   </li>

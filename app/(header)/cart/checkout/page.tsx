@@ -132,7 +132,7 @@ export default function Page() {
                 </h3>
               </div>
 
-              <CartTotal />
+              <CartTotal hasCheckoutBtn />
             </div>
           </div>
         </div>

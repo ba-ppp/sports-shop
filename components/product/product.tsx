@@ -5,6 +5,7 @@ import { routes } from "@/constant/routes";
 import { cartAtom } from "@/store/cart.store";
 import { ProductItem } from "@/types/types";
 import { getCartLocalStorage } from "@/utils/utils";
+import axios from "axios";
 import { useAtom, useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
 import { ProductCard } from "./productCard";
@@ -15,9 +16,11 @@ export const Product = () => {
   const [products, setProducts] = useState<ProductItem[]>([])
 
   const fetchProducts = async () => {
-    const res = await fetch(`${ROOT_API}/${routes.products}`)
-    const data = await res.json()
-    setProducts(data)
+    const res = await axios.get(`${ROOT_API}/${routes.products}`)
+    const data = await res.data
+
+    const newData = data?.filter((i: any) => i?.quantity > 0)
+    setProducts(newData)
   }
 
   useEffect(() => {
