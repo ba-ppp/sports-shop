@@ -1,22 +1,17 @@
 "use client";
 
 import { cartAtom } from "@/store/cart.store";
+import { ProductItem } from "@/types/types";
 import { setCartLocalStorage } from "@/utils/utils";
 import { useSetAtom } from "jotai";
 import toast, { Toaster } from "react-hot-toast";
 
 type Props = {
-  item: ProductCardItem;
+  item: ProductItem;
 };
-type ProductCardItem = {
-  id: string;
-  name: string;
-  price: string;
-  discountPrice: string;
-  imageURL?: string;
-};
+
 export const ProductCard = (props: Props) => {
-  const { id, name, price, discountPrice, imageURL } = props.item;
+  const { id, name, price, url } = props.item;
   const setCartAtom = useSetAtom(cartAtom);
 
   const handleAddToCart = () => {
@@ -39,9 +34,8 @@ export const ProductCard = (props: Props) => {
           {
             id,
             name,
-            price,
-            discountPrice,
-            imageURL,
+            price: price.toString(),
+            imageURL: url,
             quantity: 1,
           },
         ];
@@ -62,15 +56,15 @@ export const ProductCard = (props: Props) => {
         <a className="block px-6 mt-6 mb-2" href="#">
           <img
             className="mb-5 mx-auto h-56 w-full object-contain"
-            src={imageURL ?? "https://loremflickr.com/320/240/dog"}
+            src={url ?? "https://loremflickr.com/320/240/dog"}
             alt=""
           />
           <h3 className="mb-2 text-xl font-bold font-heading">{name}</h3>
           <div className="text-lg font-bold font-heading text-blue-500">
-            <span>${discountPrice}</span>
-            <span className="text-xs text-gray-500 font-semibold font-heading line-through">
+            <span>{price} đ</span>
+            {/* <span className="text-xs text-gray-500 font-semibold font-heading line-through">
               ${price}
-            </span>
+            </span> */}
           </div>
         </a>
         <div

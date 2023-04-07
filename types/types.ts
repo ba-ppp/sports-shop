@@ -4,10 +4,10 @@ export interface IToken {
 }
 
 export interface CartItem {
-    id: string;
+    id: number;
     name: string;
     price: string;
-    discountPrice: string;
+    discountPrice?: string;
     imageURL?: string;
     quantity: number;
 }
@@ -39,4 +39,30 @@ export interface FetchData {
 export interface Category {
     categoryId: string;
     name: string;
+}
+
+export interface ProductSize {
+    id: number;
+    name: string;
+    price: number;
+    productId: number;
+}
+
+export interface ProductItem {
+    id: number;
+    name: string;
+    quantity: number;
+    url: string;
+    price: number;
+    description: string;
+    categoryId: string;
+    category: null;
+    sizes: ProductSize[];
+}
+
+export interface UserProfile {
+    firstName: string;
+    lastName: string;
+    email: string;
+    address: string;
 }

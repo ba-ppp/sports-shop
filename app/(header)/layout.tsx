@@ -1,10 +1,12 @@
-import { SignInAvt } from "@/components/home/signInAvt";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 // import "./globals.css";
 
 const CartAmount = dynamic(() => import("@/components/home/cartAmount"), {
+  ssr: false,
+});
+const SignInAvt = dynamic(() => import("@/components/home/signInAvt"), {
   ssr: false,
 });
 
@@ -27,7 +29,7 @@ export default function RootLayout({
             <div className="px-12 py-8 flex w-full items-center">
               <a
                 className="flex-shrink-0 text-3xl font-bold font-heading"
-                href="#"
+                href="/"
               >
                 <div className="flex items-center">
                   <Image
@@ -43,7 +45,7 @@ export default function RootLayout({
               </a>
             </div>
             <div className="hidden xl:flex items-center justify-end mr-12">
-              <a className="mr-10" href="#">
+            <Link href="/history" className="mr-10">
                 <svg
                   width="23"
                   height="20"
@@ -59,8 +61,8 @@ export default function RootLayout({
                     strokeLinejoin="round"
                   ></path>
                 </svg>
-              </a>
-              <Link href="/cart" className="flex items-center">
+              </Link>
+              <Link href="/history" className="flex items-center">
                 <svg
                   className="mr-3"
                   width="23"

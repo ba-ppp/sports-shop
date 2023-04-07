@@ -12,6 +12,11 @@ export const getAccessToken = (): string => {
   return localStorage.getItem("access_token") || "";
 };
 
+export const getRefreshToken = (): string => {
+  if (typeof window === "undefined") return "";
+  return localStorage.getItem("refresh_token") || "";
+};
+
 export const isSignin = (): boolean => {
   if (typeof window === "undefined") return false;
   const token = localStorage.getItem("access_token") || "";
@@ -48,7 +53,7 @@ export const handleChangeTableData = (data: any): TableRow[] => {
     return {
       id: item?.categoryId,
       editableCell: {
-        Name: item?.name
+        Name: item?.name,
       },
       inforCell: {
         Status: "",
@@ -60,21 +65,55 @@ export const handleChangeTableData = (data: any): TableRow[] => {
   });
 };
 
-export const handleChangeProductData = (data: any): TableRow[] => {
+export const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  const formattedDate = new Intl.DateTimeFormat("en-GB", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  }).format(date);
+
+  return formattedDate;
+};
+
+export const handleChangeHistoriesData = (data: any): TableRow[] => {
   return data.map((item: any) => {
     return {
-      id: item?.productId,
+      id: item?.id,
+      editableCell: {
+        Name: item?.name,
+      },
+      inforCell: {
+        User: "",
+        Date: formatDate(item?.updatedDate),
+      },
+      status: {
+        isPending: !item?.onDelivery,
+        isDelivered: item?.onDelivery,
+      },
+    };
+  });
+};
+
+export const handleChangeProductData = (data: any): TableRow[] => {
+  console.log("data", data);
+  return data.map((item: any) => {
+    return {
+      id: item?.id,
       editableCell: {
         Name: item?.name,
         Price: item?.price,
       },
       inforCell: {
         Status: "",
-        Image: "",
+        Image: item?.url,
       },
       status: {
         isActive: true,
       },
     };
   });
-}
+};

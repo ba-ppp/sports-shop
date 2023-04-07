@@ -1,4 +1,16 @@
+'use client';
+
+import { userAtom } from "@/store/token.store";
+import { useAtom } from "jotai";
+import { useEffect, useState } from "react";
+
 export default function Page() {
+  const [userProfile, _] = useAtom(userAtom);
+  const [form, setForm] = useState(userProfile);
+
+  useEffect(() => {
+    setForm(userProfile);
+  }, [userProfile]);
   return (
     <section className="py-3">
       <div className="container px-4 mx-auto">
@@ -44,7 +56,8 @@ export default function Page() {
                         className="block py-4 px-3 w-full text-sm text-gray-trizzle-50 placeholder-gray-trizzle-50 font-medium outline-none bg-transparent border border-gray-trizzle-400 hover:border-white focus:border-green-500 rounded-lg"
                         id="formInput1-1"
                         type="text"
-                        placeholder="John"
+                        placeholder=""
+                        value={form.firstName}
                       />
                     </div>
                     <div className="w-full sm:w-1/2 px-3">
@@ -52,7 +65,8 @@ export default function Page() {
                         className="block py-4 px-3 w-full text-sm text-gray-trizzle-50 placeholder-gray-trizzle-50 font-medium outline-none bg-transparent border border-gray-trizzle-400 hover:border-white focus:border-green-500 rounded-lg"
                         id="formInput1-2"
                         type="text"
-                        placeholder="Doe"
+                        placeholder=""
+                        value={form.lastName}
                       />
                     </div>
                   </div>
@@ -71,7 +85,8 @@ export default function Page() {
                     className="block py-4 px-3 w-full text-sm text-gray-trizzle-50 placeholder-gray-trizzle-50 font-medium outline-none bg-transparent border border-gray-trizzle-400 hover:border-white focus:border-green-500 rounded-lg"
                     id="formInput1-3"
                     type="text"
-                    placeholder="johndoe@trizzle.ui"
+                    placeholder="johndoe@email.ui"
+                    value={form.email}
                   />
                 </div>
               </div>
@@ -85,32 +100,7 @@ export default function Page() {
               <div className="w-full sm:w-2/3 px-4">
                 <div className="max-w-xl">
                   <div className="flex flex-wrap -mx-4 -mb-10">
-                    <div className="w-full md:w-1/2 px-4 mb-10">
-                      <div className="relative w-full h-14 py-4 px-3 border border-gray-trizzle-400 hover:border-white focus-within:border-green-500 rounded-lg">
-                        <span className="absolute bottom-full left-0 ml-3 -mb-1 transform translate-y-0.5 text-xs font-semibold text-gray-trizzle-300 px-1 bg-gray-trizzle-500">
-                          Country
-                        </span>
-                        <input
-                          className="block w-full outline-none bg-transparent text-gray-trizzle-50 placeholder-gray-trizzle-50 font-semibold"
-                          id="formInput2-7"
-                          type="text"
-                          placeholder="United States"
-                        />
-                      </div>
-                    </div>
-                    <div className="w-full md:w-1/2 px-4 mb-10">
-                      <div className="relative w-full h-14 py-4 px-3 border border-gray-trizzle-400 hover:border-white focus-within:border-green-500 rounded-lg">
-                        <span className="absolute bottom-full left-0 ml-3 -mb-1 transform translate-y-0.5 text-xs font-semibold text-gray-trizzle-300 px-1 bg-gray-trizzle-500">
-                          City
-                        </span>
-                        <input
-                          className="block w-full outline-none bg-transparent text-gray-trizzle-50 placeholder-gray-trizzle-50 font-semibold"
-                          id="formInput2-8"
-                          type="text"
-                          placeholder="New York"
-                        />
-                      </div>
-                    </div>
+                    
 
                     <div className="w-full px-4 mb-10">
                       <div className="relative w-full h-14 py-4 px-3 border border-gray-trizzle-400 hover:border-white focus-within:border-green-500 rounded-lg">
@@ -121,6 +111,7 @@ export default function Page() {
                           className="block w-full outline-none bg-transparent text-gray-trizzle-50 placeholder-gray-trizzle-50 font-semibold"
                           id="formInput2-11"
                           type="text"
+                          value={form.address}
                         />
                       </div>
                     </div>

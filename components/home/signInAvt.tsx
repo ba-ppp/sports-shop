@@ -1,20 +1,40 @@
 "use client";
 
+import { tokenAtom, userAtom } from "@/store/token.store";
 import { isSignin } from "@/utils/utils";
+import { useAtom } from "jotai";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { ImageURL } from "../shared/imageURL";
 
-export const SignInAvt = () => {
+export default function SignInAvt() {
+  const [token, setToken] = useAtom(tokenAtom);
+  const [userProfile, _] = useAtom(userAtom);
+
+  const router = useRouter();
+
+  const handleClickAvt = () => {
+    router.push("/profile");
+  };
+
+  useEffect(() => {
+    setToken();
+  }, [token]);
+
   return (
     <>
-      {isSignin() ? (
-        <div className="flex items-center">
+      {token ? (
+        <span
+          onClick={handleClickAvt}
+          className="cursor-pointer flex items-center"
+        >
           <ImageURL
-            url="https://ui-avatars.com/api/?name=Robert&background=0D8ABC&color=fff"
+            url={`https://ui-avatars.com/api/?name=${userProfile.firstName}&background=0D8ABC&color=fff`}
             height={36}
             width={36}
           />
-          <span className="mr-2 font-medium">Robert</span>
+          <span className="mr-2 font-medium">{userProfile.firstName}</span>
           <span>
             <svg
               width="10"
@@ -32,7 +52,7 @@ export const SignInAvt = () => {
               ></path>
             </svg>
           </span>
-        </div>
+        </span>
       ) : (
         <a
           className="inline-flex items-center font-semibold font-heading"
@@ -50,4 +70,4 @@ export const SignInAvt = () => {
       )}
     </>
   );
-};
+}
