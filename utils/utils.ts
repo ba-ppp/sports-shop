@@ -1,10 +1,14 @@
-import { CartItem, IToken, TableRow } from "../types/types";
-import randomColor from "randomcolor";
 import jwt_decode from "jwt-decode";
+import { CartItem, IToken, TableRow } from "../types/types";
 
 export const setTokenLocalStorage = (token: IToken) => {
   localStorage.setItem("access_token", token.access_token);
   localStorage.setItem("refresh_token", token.refresh_token);
+};
+
+export const removeTokenLocalStorage = () => {
+  localStorage.removeItem("access_token");
+  localStorage.removeItem("refresh_token");
 };
 
 export const getAccessToken = (): string => {

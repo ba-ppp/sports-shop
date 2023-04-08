@@ -1,8 +1,36 @@
+"use client";
+
+import { getAccessToken, isSignin } from "@/utils/utils";
+import jwt_decode from "jwt-decode";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { toast, Toaster } from "react-hot-toast";
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
+  const [isChecking, toggleChecking] = useState(true);
+
+  useEffect(() => {
+    if (!isSignin()) {
+      router.push("/signin");
+      return;
+    }
+
+    const token = getAccessToken();
+    const payload: any = jwt_decode(token ?? "");
+
+    const { role } = payload;
+    if (role !== "Admin") {
+      toast.error("You are not admin");
+      router.push("/");
+    }
+    toggleChecking(false);
+  }, []);
+
   return (
     <html lang="en">
       {/*
@@ -12,13 +40,22 @@ export default function RootLayout({
       <head />
 
       <body>
+        <Toaster />
         <div className="bg-gray-trizzle-400 min-h-screen">
           <section>
             <nav className="flex items-center justify-between p-8 bg-gray-trizzle-700 mb-3">
               <div className="w-full xl:w-auto px-2 xl:mr-12">
                 <div className="flex items-center justify-between">
-                  <a className="inline-flex items-center h-8 text-gray-trizzle-300 space-x-3" href="#">
-                    <img width={24} height={24} src="/yofte-logo-white.svg" alt="" />
+                  <a
+                    className="inline-flex items-center h-8 text-gray-trizzle-300 space-x-3"
+                    href="/"
+                  >
+                    <img
+                      width={24}
+                      height={24}
+                      src="/yofte-logo-white.svg"
+                      alt=""
+                    />
                     <span>Sport shop</span>
                   </a>
                   <div className="xl:hidden">
@@ -62,7 +99,7 @@ export default function RootLayout({
                       <span className="ml-2">Overview</span>
                     </a>
                   </li>
-                  
+
                   <li className="mr-10">
                     <a
                       className="inline-flex items-center text-sm font-semibold text-gray-trizzle-300 hover:text-gray-trizzle-200"
@@ -101,7 +138,6 @@ export default function RootLayout({
                         ></path>
                       </svg>
                       <span className="ml-2">Categories</span>
-                     
                     </a>
                   </li>
                   <li className="mr-10">
@@ -164,7 +200,6 @@ export default function RootLayout({
                           ></path>
                         </svg>
                       </a>
-                      
                     </div>
                   </div>
                 </div>
@@ -175,11 +210,7 @@ export default function RootLayout({
               <nav className="relative flex flex-col p-8 h-full w-full bg-gray-trizzle-700 overflow-y-auto">
                 <div className="flex items-center justify-between mb-8">
                   <a className="inline-flex items-center" href="#">
-                    <img
-                      className="h-10"
-                      src="/yofte-logo-white.svg"
-                      alt=""
-                    />
+                    <img className="h-10" src="/yofte-logo-white.svg" alt="" />
                   </a>
                   <button className="navbar-close">
                     <svg
@@ -336,7 +367,7 @@ export default function RootLayout({
               </nav>
             </div>
           </section>
-          {children}
+          {!isChecking && children}
         </div>
       </body>
     </html>

@@ -65,4 +65,5 @@ export interface UserProfile {
     lastName: string;
     email: string;
     address: string;
+    role: string;
 }

@@ -10,6 +10,7 @@ export const userAtom = atom<UserProfile>({
   lastName: "",
   email: "",
   address: "",
+ role: "user",
 });
 
 export const tokenAtom = atom(
@@ -43,14 +44,16 @@ export const tokenAtom = atom(
     const token = await get(tokenAtom);
     const payload: any = jwt_decode(token ?? "");
 
-    const { name, email, address } = payload;
+    const { name, email, address, role } = payload;
 
     const [firstName, lastName] = name.split(" ");
+
     set(userAtom, {
       firstName,
-      lastName,
+      lastName: lastName === "undefined" ? "" : lastName,
       email,
       address,
+      role,
     });
   }
 );

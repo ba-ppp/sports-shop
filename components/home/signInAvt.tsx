@@ -24,7 +24,7 @@ export default function SignInAvt() {
 
   return (
     <>
-      {token ? (
+      {(token && userProfile.email) ? (
         <span
           onClick={handleClickAvt}
           className="cursor-pointer flex items-center"
