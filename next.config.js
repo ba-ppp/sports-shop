@@ -6,6 +6,9 @@ const nextConfig = {
   images: {
     domains: ['images.unsplash.com', 'ui-avatars.com'],
   },
+  env: {
+    PASSWORD_PROTECT: true
+  }
 }
 
 module.exports = nextConfig
