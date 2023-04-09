@@ -13,6 +13,7 @@ type Props = {
     newPrice?: string,
     newImg?: File
   ) => void;
+  canEditRow?: boolean;
   hasImgField?: boolean;
 };
 export const VirtualRow = (props: Props) => {
@@ -157,7 +158,7 @@ export const VirtualRow = (props: Props) => {
         </td>
         {!isEmpty(item.editableCell) && (
           <td className="p-0">
-            <div
+            {props.canEditRow &&<div
               onClick={handleOnClickEditRow}
               className="cursor-pointer inline-flex h-9 px-4 mr-2 items-center justify-center bg-gray-trizzle-600 hover:bg-gray-trizzle-700 rounded-lg transition duration-200"
             >
@@ -176,8 +177,8 @@ export const VirtualRow = (props: Props) => {
               <span className="ml-2 text-xs text-gray-trizzle-200 font-semibold">
                 {isEditing ? "Save" : "Edit"}
               </span>
-            </div>
-            <div
+            </div>}
+             <div
               className="inline-flex h-9 px-4 items-center justify-center bg-gray-trizzle-600 hover:bg-gray-trizzle-700 rounded-lg transition duration-200"
               onClick={handleOnClickDeleteRow}
             >

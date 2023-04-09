@@ -86,7 +86,7 @@ export default function Page() {
     await deleteRow;
 
     setDataList((prev) => prev.filter((item) => item.id !== id));
-  }
+  };
   return (
     <>
       <VirtualTable
@@ -96,6 +96,7 @@ export default function Page() {
         handleEditRow={handleEditRow}
         handleAddNewRow={handleAddNewRow}
         handleDeleteRow={handleDeleteRow}
+        canEditRow
       />
       <Toaster />
     </>

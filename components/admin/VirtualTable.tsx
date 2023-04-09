@@ -23,6 +23,7 @@ type Props = {
   handleDeleteRow?: (id: string) => void;
   handleAddNewRow?: () => void;
   hasImageField?: boolean;
+  canEditRow?: boolean;
 };
 export const VirtualTable = (props: Props) => {
   const {
@@ -32,7 +33,8 @@ export const VirtualTable = (props: Props) => {
     handleEditRow,
     handleDeleteRow,
     handleAddNewRow,
-    hasImageField
+    hasImageField,
+    canEditRow
   } = props;
 
   return (
@@ -115,6 +117,7 @@ export const VirtualTable = (props: Props) => {
                       handleEditRow={handleEditRow}
                       handleDeleteRow={handleDeleteRow}
                       hasImgField={hasImageField}
+                      canEditRow={canEditRow}
                     />
                   ))}
                 </tbody>

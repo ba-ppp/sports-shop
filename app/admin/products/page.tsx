@@ -117,6 +117,7 @@ export default function Page() {
         handleEditRow={handleEditRow}
         handleDeleteRow={handleDeleteRow}
         hasImageField
+        canEditRow
       />
       <Toaster />
     </>

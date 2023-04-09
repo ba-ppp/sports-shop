@@ -7,6 +7,7 @@ import { TableRow } from "@/types/types";
 import { getAccessToken } from "@/utils/utils";
 import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
+import { toast, Toaster } from "react-hot-toast";
 
 export default function Page() {
   const labelList = ["Id", "User", "Date", "Status"];
@@ -30,7 +31,11 @@ export default function Page() {
           inforCell: {
             ...item?.inforCell,
             User: userProfile.firstName
+          },
+          editableCell: {
+            delete: true
           }
+          
         };
       });
       setDateList(newData);
@@ -42,11 +47,32 @@ export default function Page() {
     if (!userProfile.firstName) return;
     fetchData();
   }, [userProfile]);
+
+  const handleDeleteRow = async (id: string) => {
+    const deleteRow = fetch(`${ROOT_API}/${routes.histories}/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+    });
+
+    toast.promise(deleteRow, {
+      loading: "Deleting...",
+      success: "Deleted!",
+      error: "Failed to delete",
+    });
+
+    await deleteRow;
+  }
   return (
+    <>
     <VirtualTable
       labelList={labelList}
       dataList={dataList}
       tableName="History purcharse"
+      handleDeleteRow={handleDeleteRow}
     />
+    <Toaster />
+    </>
   );
 }
