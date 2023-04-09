@@ -8,7 +8,6 @@ import { getAccessToken } from "@/utils/utils";
 import axios from "axios";
 import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
 
 type Props = {
@@ -27,7 +26,7 @@ export default function CartTotal(props: Props) {
     const payload: any = [];
     cart.forEach((item) => {
       payload.push({
-        productSizeId: item.id,
+        productSizeId: item.sizes[0].id,
         quantity: item.quantity,
       });
     });
@@ -91,7 +90,7 @@ export default function CartTotal(props: Props) {
       {hasCheckoutBtn && (
         <div
           className="cursor-pointer block w-full py-4 bg-orange-300 hover:bg-orange-400 text-center text-white font-bold font-heading uppercase rounded-md transition duration-200"
-          onClick={() => router.push("/cart/checkout")}
+          onClick={handleApply}
         >
           Apply
         </div>

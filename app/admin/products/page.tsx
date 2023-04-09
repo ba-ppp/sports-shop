@@ -6,6 +6,7 @@ import { routes } from "@/constant/routes";
 import { TableRow } from "@/types/types";
 import { getAccessToken } from "@/utils/utils";
 import { useEffect, useState } from "react";
+import { toast, Toaster } from "react-hot-toast";
 
 export default function Page() {
   const labelList = ["Id", "Name", "Price", "Image", "Status"];
@@ -21,22 +22,35 @@ export default function Page() {
     fetchCategories();
   }, []);
 
-  const handleEditRow = async (id: string, newValue: string, newPrice?: string, newImg?: File) => {
+  const handleEditRow = async (
+    id: string,
+    newValue: string,
+    newPrice?: string,
+    newImg?: File
+  ) => {
     const formData = new FormData();
     formData.append("name", newValue);
-    formData.append("quality", "100");
+    formData.append("quantity", "100");
     formData.append("price", newPrice || "0");
     formData.append("image", newImg || new File([""], "empty"));
     formData.append("description", "test");
     formData.append("categoryId", "1");
 
-    await fetch(`${ROOT_API}/${routes.products}/${id}`, {
+    const editRow = fetch(`${ROOT_API}/${routes.products}/${id}`, {
       method: "PUT",
       body: formData,
       headers: {
         Authorization: `Bearer ${getAccessToken()}`,
       },
     });
+
+    toast.promise(editRow, {
+      loading: "Updating...",
+      success: "Updated!",
+      error: "Failed to update",
+    });
+
+    await editRow;
   };
 
   const handleAddNewRow = async () => {
@@ -52,7 +66,7 @@ export default function Page() {
         },
         editableCell: {
           Name: `New Product ${String(dataList.length)}`,
-          Price: '100'
+          Price: "100",
         },
       },
     ];
@@ -60,7 +74,7 @@ export default function Page() {
 
     const formData = new FormData();
     formData.append("name", `New Product ${String(dataList.length)}`);
-    formData.append("quality", "100");
+    formData.append("quantity", "100");
     formData.append("file", new File([""], "empty"));
     formData.append("description", "test");
     formData.append("categoryId", "1");
@@ -76,22 +90,35 @@ export default function Page() {
   };
 
   const handleDeleteRow = async (id: string) => {
-    await fetch(`${ROOT_API}/${routes.products}/${id}`, {
+    const deleteRow = fetch(`${ROOT_API}/${routes.products}/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${getAccessToken()}`,
-      }
+      },
     });
+
+    toast.promise(deleteRow, {
+      loading: "Deleting...",
+      success: "Deleted!",
+      error: "Failed to delete",
+    })
+
+    await deleteRow;
+
+    setDataList((prev) => prev.filter((item) => item.id !== id));
   };
   return (
-    <VirtualTable
-      labelList={labelList}
-      tableName="Products"
-      dataList={dataList}
-      handleAddNewRow={handleAddNewRow}
-      handleEditRow={handleEditRow}
-      handleDeleteRow={handleDeleteRow}
-      hasImageField
-    />
+    <>
+      <VirtualTable
+        labelList={labelList}
+        tableName="Products"
+        dataList={dataList}
+        handleAddNewRow={handleAddNewRow}
+        handleEditRow={handleEditRow}
+        handleDeleteRow={handleDeleteRow}
+        hasImageField
+      />
+      <Toaster />
+    </>
   );
 }
