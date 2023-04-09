@@ -1,26 +1,41 @@
+"use client";
+
+import { InputSearch } from "@/components/cart/inputSearch";
 import { Product } from "@/components/product/product";
 import { ROOT_API } from "@/constant/env";
 import { routes } from "@/constant/routes";
 import { ResponseStatusCode } from "@/enums/enums";
 import { FetchData } from "@/types/types";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
-async function getCategories(): Promise<any | null> {
-  try {
-    const res = await axios.get(`${ROOT_API}/${routes.categories}`);
+export default function Products() {
+  const [categories, setCategories] = useState<any>(null);
+  const [filterString, setFilterString] = useState<string>("");
 
-    if (res.status !== ResponseStatusCode.OK) return null;
-    // This will activate the closest `error.js` Error Boundary
-    const data = res.data;
-    return data;
-  } catch (error) {
-    console.log(error);
-    return null;
+  const [activeCategoryId, setActiveCategoryId] = useState<number>();
+
+  async function getCategories(): Promise<any | null> {
+    try {
+      const res = await axios.get(`${ROOT_API}/${routes.categories}`);
+
+      if (res.status !== ResponseStatusCode.OK) return null;
+      // This will activate the closest `error.js` Error Boundary
+      const data = res.data;
+      setCategories(data);
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
   }
-}
 
-export default async function Products() {
-  const categories = await getCategories();
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilterString(e.target.value.trim());
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, []);
   return (
     <section className="py-20 bg-gray-100">
       <div className="container mx-auto px-4">
@@ -35,7 +50,9 @@ export default async function Products() {
                   <ul className="hidden text-left mt-6">
                     {categories?.map((category: any, idx: number) => (
                       <li key={idx} className="mb-4">
-                        <a href="#">{category.name}</a>
+                        <span onClick={() => console.log("a")}>
+                          {category.name}
+                        </span>
                       </li>
                     ))}
                   </ul>
@@ -161,8 +178,17 @@ export default async function Products() {
               <h3 className="mb-8 text-2xl font-bold font-heading">Category</h3>
               <ul>
                 {categories?.map((category: any, idx: number) => (
-                  <li key={idx} className="mb-4">
-                    <a href="#">{category.name}</a>
+                  <li key={idx} className="mb-4 space-y-3">
+                    <span
+                      className={
+                        activeCategoryId === category?.categoryId
+                          ? "border border-solid p-2 border-gray-500"
+                          : "cursor-pointer"
+                      }
+                      onClick={() => setActiveCategoryId(category?.categoryId)}
+                    >
+                      {category.name}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -270,7 +296,11 @@ export default async function Products() {
             </div>
           </div>
           <div className="w-full lg:w-3/4 px-3">
-            <Product />
+            <div className="mb-10">
+              <InputSearch handleOnChange={handleOnChange} />
+            </div>
+
+            <Product filter={filterString} activeCategoryId={activeCategoryId} />
           </div>
         </div>
         <div className="text-center">

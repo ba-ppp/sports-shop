@@ -6,6 +6,7 @@ import { TableRow } from "@/types/types";
 import { getAccessToken, handleChangeTableData } from "@/utils/utils";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { toast, Toaster } from "react-hot-toast";
 
 export default function Page() {
   const labelList = ["Id", "Name", "Status"];
@@ -21,7 +22,7 @@ export default function Page() {
   }, []);
 
   const handleEditRow = async (id: string, newValue: string) => {
-    await axios.put(
+    const editRow = axios.put(
       `${ROOT_API}/${routes.categories}/${id}`,
       {
         name: newValue,
@@ -32,6 +33,14 @@ export default function Page() {
         },
       }
     );
+
+    toast.promise(editRow, {
+      loading: "Updating...",
+      success: "Updated!",
+      error: "Failed to update",
+    });
+
+    await editRow;
   };
 
   const handleAddNewRow = async () => {
@@ -60,13 +69,35 @@ export default function Page() {
       }
     );
   };
+
+  const handleDeleteRow = async (id: string) => {
+    const deleteRow = axios.delete(`${ROOT_API}/${routes.categories}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+    });
+
+    toast.promise(deleteRow, {
+      loading: "Deleting...",
+      success: "Deleted!",
+      error: "Failed to delete",
+    });
+
+    await deleteRow;
+
+    setDataList((prev) => prev.filter((item) => item.id !== id));
+  }
   return (
-    <VirtualTable
-      tableName="Categories"
-      labelList={labelList}
-      dataList={dataList}
-      handleEditRow={handleEditRow}
-      handleAddNewRow={handleAddNewRow}
-    />
+    <>
+      <VirtualTable
+        tableName="Categories"
+        labelList={labelList}
+        dataList={dataList}
+        handleEditRow={handleEditRow}
+        handleAddNewRow={handleAddNewRow}
+        handleDeleteRow={handleDeleteRow}
+      />
+      <Toaster />
+    </>
   );
 }

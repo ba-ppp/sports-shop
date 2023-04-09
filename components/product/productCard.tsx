@@ -37,6 +37,7 @@ export const ProductCard = (props: Props) => {
             price: price.toString(),
             imageURL: url,
             quantity: 1,
+            sizes: props.item.sizes
           },
         ];
       }
