@@ -34,6 +34,7 @@ export const Product = (props: Props) => {
       setProducts(orgProducts);
       return;
     }
+    
     const newData = orgProducts?.filter(
       (i) =>
         i?.categoryId === props.activeCategoryId &&
