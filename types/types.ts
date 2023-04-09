@@ -10,6 +10,7 @@ export interface CartItem {
     discountPrice?: string;
     imageURL?: string;
     quantity: number;
+    sizes: ProductSize[];
 }
 
 export interface KeyValue {
@@ -55,7 +56,7 @@ export interface ProductItem {
     url: string;
     price: number;
     description: string;
-    categoryId: string;
+    categoryId: number;
     category: null;
     sizes: ProductSize[];
 }

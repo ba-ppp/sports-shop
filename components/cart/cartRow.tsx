@@ -1,8 +1,16 @@
 "use client";
 
-import { cartAtom, removeCartItemAtom, subTotalPriceAtom } from "@/store/cart.store";
-import { CartItem } from "@/types/types";
+import {
+  cartAtom,
+  removeCartItemAtom
+} from "@/store/cart.store";
+import { CartItem, ProductItem } from "@/types/types";
 import { setCartLocalStorage } from "@/utils/utils";
+import {
+  FormControl, InputLabel,
+  MenuItem, Select,
+  SelectChangeEvent
+} from "@mui/material";
 import { useAtom, useSetAtom } from "jotai";
 import { useState } from "react";
 
@@ -10,10 +18,13 @@ type Props = {
   item: CartItem;
 };
 export const CartRow = (props: Props) => {
-  const { id, name, price, discountPrice, imageURL, quantity } = props.item;
+  const { id, name, price, imageURL, quantity, sizes } = props.item;
 
+  console.log('props.item', props.item)
   const setCart = useSetAtom(cartAtom);
-  const [_,removeCart] = useAtom(removeCartItemAtom)
+  const [_, removeCart] = useAtom(removeCartItemAtom);
+
+  const [currentSize, setCurrentSize] = useState(sizes[0].name);
 
   const setQuantity = (newValue: number) => {
     setCart((prev) => {
@@ -47,7 +58,12 @@ export const CartRow = (props: Props) => {
 
   const handleRemoveItem = () => {
     removeCart(id);
-  }
+  };
+
+  const handleChangeSize = (event: SelectChangeEvent) => {
+    setCurrentSize(event.target.value);
+  };
+  
 
   const totalItemPrice = (quantity * parseFloat(price)).toFixed(0);
   return (
@@ -66,6 +82,29 @@ export const CartRow = (props: Props) => {
           <p className="text-gray-500">In Stock</p>
         </div>
       </div>
+      <div>
+      <FormControl sx={{ m: 1, minWidth: 80 }}>
+        <InputLabel id="demo-simple-select-autowidth-label">Size</InputLabel>
+        <Select
+          labelId="demo-simple-select-autowidth-label"
+          id="demo-simple-select-autowidth"
+          value={currentSize}
+          onChange={handleChangeSize}
+          autoWidth
+          label="Size"
+        >
+          {/* <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={10}>Twenty</MenuItem>
+          <MenuItem value={21}>Twenty one</MenuItem>
+          <MenuItem value={22}>Twenty one and a half</MenuItem> */}
+          {sizes.map((item, i) => (
+            <MenuItem value={item.name} key={i}>{item.name}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </div>
       <div className="w-full lg:w-auto flex flex-wrap -mx-4 items-center">
         <div className="order-0 w-1/2 md:w-1/3 px-4 mb-4 md:mb-0">
           <div className="inline-flex items-center px-4 font-semibold font-heading text-gray-500 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md">
