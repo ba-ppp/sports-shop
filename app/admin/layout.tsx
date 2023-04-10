@@ -142,7 +142,7 @@ export default function RootLayout({
                   </li>
                   <li className="mr-10">
                     <div
-                      className="inline-flex items-center text-sm font-semibold text-gray-trizzle-300 hover:text-gray-trizzle-200"
+                      className="cursor-pointer inline-flex items-center text-sm font-semibold text-gray-trizzle-300 hover:text-gray-trizzle-200"
                       onClick={() => router.push('/admin/bills')}
                     >
                       <svg
@@ -315,7 +315,7 @@ export default function RootLayout({
                   </li>
                   <li>
                     <a
-                      className="inline-flex items-center text-lg font-semibold text-gray-trizzle-300 hover:text-gray-trizzle-200"
+                      className="cursor-pointer inline-flex items-center text-lg font-semibold text-gray-trizzle-300 hover:text-gray-trizzle-200"
                       href="/admin/bills"
                     >
                       <svg
