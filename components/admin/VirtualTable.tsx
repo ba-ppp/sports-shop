@@ -22,6 +22,7 @@ type Props = {
   ) => void;
   handleDeleteRow?: (id: string) => void;
   handleAddNewRow?: () => void;
+  handleChangeStatus?: (id: string) => void;
   hasImageField?: boolean;
   canEditRow?: boolean;
 };
@@ -34,7 +35,8 @@ export const VirtualTable = (props: Props) => {
     handleDeleteRow,
     handleAddNewRow,
     hasImageField,
-    canEditRow
+    canEditRow,
+    handleChangeStatus
   } = props;
 
   return (
@@ -76,7 +78,7 @@ export const VirtualTable = (props: Props) => {
                       Cancel
                     </a>
                     <div
-                      className="inline-block py-2 px-4 text-xs text-center font-semibold leading-normal text-blue-50 bg-blue-500 hover:bg-blue-600 rounded-lg transition duration-200"
+                      className="cursor-pointer inline-block py-2 px-4 text-xs text-center font-semibold leading-normal text-blue-50 bg-blue-500 hover:bg-blue-600 rounded-lg transition duration-200"
                       onClick={handleAddNewRow}
                     >
                       Add
@@ -118,6 +120,7 @@ export const VirtualTable = (props: Props) => {
                       handleDeleteRow={handleDeleteRow}
                       hasImgField={hasImageField}
                       canEditRow={canEditRow}
+                      handleChangeStatus={handleChangeStatus}
                     />
                   ))}
                 </tbody>

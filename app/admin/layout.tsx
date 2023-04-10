@@ -141,9 +141,9 @@ export default function RootLayout({
                     </a>
                   </li>
                   <li className="mr-10">
-                    <a
+                    <div
                       className="inline-flex items-center text-sm font-semibold text-gray-trizzle-300 hover:text-gray-trizzle-200"
-                      href="#"
+                      onClick={() => router.push('/admin/bills')}
                     >
                       <svg
                         width="18"
@@ -157,8 +157,8 @@ export default function RootLayout({
                           fill="#3D485B"
                         ></path>
                       </svg>
-                      <span className="ml-2">Customers</span>
-                    </a>
+                      <span className="ml-2">Bills</span>
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -316,7 +316,7 @@ export default function RootLayout({
                   <li>
                     <a
                       className="inline-flex items-center text-lg font-semibold text-gray-trizzle-300 hover:text-gray-trizzle-200"
-                      href="#"
+                      href="/admin/bills"
                     >
                       <svg
                         width="18"
@@ -330,7 +330,7 @@ export default function RootLayout({
                           fill="#3D485B"
                         ></path>
                       </svg>
-                      <span className="ml-2">Customers</span>
+                      <span className="ml-2">Bills</span>
                     </a>
                   </li>
                 </ul>

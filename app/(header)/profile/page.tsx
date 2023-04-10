@@ -151,12 +151,13 @@ export default function Page() {
               <div className="w-full sm:w-2/3 px-4">
                 <div className="max-w-xl">
                   <input
-                    className="block py-4 px-3 w-full text-sm text-gray-trizzle-50 placeholder-gray-trizzle-50 font-medium outline-none bg-transparent border border-gray-trizzle-400 hover:border-white focus:border-green-500 rounded-lg"
+                    className="cursor-not-allowed block py-4 px-3 w-full text-sm text-gray-trizzle-50 placeholder-gray-trizzle-50 font-medium outline-none bg-transparent border border-gray-trizzle-400 hover:border-white focus:border-green-500 rounded-lg"
                     id="formInput1-3"
                     type="text"
                     placeholder="johndoe@email.ui"
                     value={form.email}
                     name="email"
+                    disabled
                     onChange={handleChangeForm}
                   />
                 </div>

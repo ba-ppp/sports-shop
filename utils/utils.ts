@@ -91,7 +91,7 @@ export const handleChangeHistoriesData = (data: any): TableRow[] => {
         Name: item?.name,
       },
       inforCell: {
-        User: "",
+        User: item?.userId,
         Date: formatDate(item?.updatedDate),
       },
       status: {

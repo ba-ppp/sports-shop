@@ -14,39 +14,7 @@ export default function Home() {
   return (
     <>
       <section className="bg-blue-500 bg-opacity-20">
-        <div className="py-2 bg-blue-500">
-          <div className="flex items-center justify-center">
-            <svg
-              className="mr-2"
-              width="18"
-              height="11"
-              viewBox="0 0 18 11"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                y="3.07129"
-                width="4"
-                height="10"
-                rx="2"
-                transform="rotate(-45 0 3.07129)"
-                fill="white"
-              ></rect>
-              <rect
-                x="8"
-                y="2.82861"
-                width="4"
-                height="10"
-                rx="2"
-                transform="rotate(-45 8 2.82861)"
-                fill="white"
-              ></rect>
-            </svg>
-            <p className="text-xs font-bold font-heading text-blue-200">
-              Hi, you’ re new here! Get 20% off card!
-            </p>
-          </div>
-        </div>
+        
         <nav className="relative flex justify-between bg-[#5475e5] bg-opacity-70">
           <div className="px-12 py-8 flex w-full items-center">
             <a
@@ -77,7 +45,7 @@ export default function Home() {
               <li>
                 <a
                   className="inline-block w-28 mr-3 py-2 text-center hover:text-white bg-white hover:bg-gray-900 rounded-full font-bold font-heading transition duration-200"
-                  href="/products"
+                  href="#collection"
                 >
                   Collection
                 </a>
@@ -85,7 +53,7 @@ export default function Home() {
               <li>
                 <a
                   className="inline-block w-28 mr-3 py-2 text-center hover:text-white bg-white hover:bg-gray-900 rounded-full font-bold font-heading transition duration-200"
-                  href="/products"
+                  href="#story"
                 >
                   Story
                 </a>
@@ -93,7 +61,7 @@ export default function Home() {
               <li>
                 <a
                   className="inline-block w-28 mr-3 py-2 text-center hover:text-white bg-white hover:bg-gray-900 rounded-full font-bold font-heading transition duration-200"
-                  href="/products"
+                  href="#brand"
                 >
                   Brand
                 </a>
@@ -101,9 +69,9 @@ export default function Home() {
               <li>
                 <a
                   className="inline-block w-28 mr-3 py-2 text-center hover:text-white bg-white hover:bg-gray-900 rounded-full font-bold font-heading transition duration-200"
-                  href="/products"
+                  href="#service"
                 >
-                  Photos
+                  Service
                 </a>
               </li>
             </ul>
@@ -409,7 +377,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="py-12 lg:py-24 bg-gray-50">
+        <div id="brand" className="py-12 lg:py-24 bg-gray-50">
           <div className="container mx-auto px-4">
             <h4 className="lg:ml-16 mb-6 font-bold font-heading text-gray-500 text-xs">
               TRUSTED BY BRANDS ALL OVER THE WORLD
@@ -486,7 +454,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-20 bg-[#010206] overflow-x-hidden">
+      <section id="service" className="py-20 bg-[#010206] overflow-x-hidden">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap -mx-4">
             <div className="w-full md:w-1/2 lg:w-1/4 px-3 mb-6 lg:mb-0">
@@ -664,7 +632,7 @@ export default function Home() {
               width={205}
               height={98}
             />
-            <div className="relative flex flex-wrap items-center">
+            <div id="collection" className="relative flex flex-wrap items-center">
               <div className="w-full md:w-4/6 p-10 lg:pl-40">
                 <span className="text-xl md:text-2xl text-white">
                   New Products
@@ -691,7 +659,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="relative py-20 md:py-32 bg-[#081132] overflow-x-hidden">
+      <section id="story" className="relative py-20 md:py-32 bg-[#081132] overflow-x-hidden">
         <Image
           className="absolute h-24 md:h-auto top-0 left-0 right-0"
           src="/line-top.svg"

@@ -11,11 +11,10 @@ import { toast, Toaster } from "react-hot-toast";
 
 export default function Page() {
   const labelList = ["Id", "User", "Date", "Status"];
-  const [dataList, setDateList] = useState<TableRow[]>([]);
+  const [dataList, setDataList] = useState<TableRow[]>([]);
 
   const [userProfile, _] = useAtom(userAtom);
   const fetchData = async () => {
-    
     try {
       const res = await fetch("/api/histories", {
         method: "GET",
@@ -30,24 +29,21 @@ export default function Page() {
           ...item,
           inforCell: {
             ...item?.inforCell,
-            User: userProfile.firstName
           },
           editableCell: {
-            delete: true
-          }
-          
+            delete: true,
+          },
         };
       });
-      console.log('newData', newData)
-      setDateList(newData);
+      console.log("newData", newData);
+      setDataList(newData);
     } catch (err) {
       console.log("err", err);
     }
   };
   useEffect(() => {
-    if (!userProfile.firstName) return;
     fetchData();
-  }, [userProfile]);
+  }, []);
 
   const handleDeleteRow = async (id: string) => {
     const deleteRow = fetch(`${ROOT_API}/${routes.histories}/${id}`, {
@@ -64,16 +60,51 @@ export default function Page() {
     });
 
     await deleteRow;
-  }
+  };
+
+  const handleChangeStatus = async (id: string) => {
+    try {
+      const changeStatus = fetch(`${ROOT_API}/${routes.histories}/${id}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${getAccessToken()}`,
+        },
+      });
+
+      toast.promise(changeStatus, {
+        loading: "Changing status...",
+        success: "Changed successfully!",
+        error: "Failed to change",
+      });
+
+      await changeStatus;
+
+      const newDataList = dataList.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            status: {
+                isDelivered: true
+            }
+          };
+        }
+        return item;
+      });
+        setDataList(newDataList);
+    } catch (err) {
+      console.log("err", err);
+    }
+  };
   return (
     <>
-    <VirtualTable
-      labelList={labelList}
-      dataList={dataList}
-      tableName="History purcharse"
-      handleDeleteRow={handleDeleteRow}
-    />
-    <Toaster />
+      <VirtualTable
+        labelList={labelList}
+        dataList={dataList}
+        tableName="Users' Billing"
+        handleDeleteRow={handleDeleteRow}
+        handleChangeStatus={handleChangeStatus}
+      />
+      <Toaster />
     </>
   );
 }

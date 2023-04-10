@@ -49,7 +49,7 @@ export default function Page() {
       {
         id: String(dataList.length),
         editableCell: {
-          Name: `New Product ${String(dataList.length)}`,
+          Name: `New Category ${String(dataList.length)}`,
         },
         status: {
           isActive: true,
@@ -60,7 +60,7 @@ export default function Page() {
     await axios.post(
       `${ROOT_API}/${routes.categories}`,
       {
-        name: `New Product ${String(dataList.length)}`,
+        name: `New Category ${String(dataList.length)}`,
       },
       {
         headers: {
