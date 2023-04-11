@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
   try {
     const res = await axios.get(`${ROOT_API}/${routes.histories}`, {
       headers: {
-        Authorization: request.headers.get('Authorization'),
+        Authorization: (request as any).headers.get('Authorization'),
       }
     });
     if (res.status === ResponseStatusCode.OK) {

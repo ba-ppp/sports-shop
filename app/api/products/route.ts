@@ -3,7 +3,7 @@ import { routes } from "@/constant/routes";
 import { ResponseStatusCode } from "@/enums/enums";
 import { handleChangeProductData } from "@/utils/utils";
 import axios from "axios";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
   try {
