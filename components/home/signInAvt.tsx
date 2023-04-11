@@ -1,11 +1,10 @@
 "use client";
 
 import { tokenAtom, userAtom } from "@/store/token.store";
-import { isSignin } from "@/utils/utils";
 import { useAtom } from "jotai";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { ImageURL } from "../shared/imageURL";
 
 export default function SignInAvt() {
@@ -18,13 +17,18 @@ export default function SignInAvt() {
     router.push("/profile");
   };
 
+  const handleSignIn = () => {
+    router.push("/signin");
+  };
+
   useEffect(() => {
+    console.log('token', token)
     setToken();
   }, [token]);
 
   return (
     <>
-      {(token && userProfile.email) ? (
+      {token && userProfile.email ? (
         <span
           onClick={handleClickAvt}
           className="cursor-pointer flex items-center"
@@ -54,9 +58,9 @@ export default function SignInAvt() {
           </span>
         </span>
       ) : (
-        <a
+        <div
           className="inline-flex items-center font-semibold font-heading"
-          href="/signin"
+          onClick={handleSignIn}
         >
           <Image
             className="object-cover mr-3"
@@ -66,7 +70,7 @@ export default function SignInAvt() {
             height={31}
           />
           <span className="text-white">Sign&nbsp;In</span>
-        </a>
+        </div>
       )}
     </>
   );

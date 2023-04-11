@@ -1,5 +1,6 @@
 "use client";
 import { VirtualTable } from "@/components/admin/VirtualTable";
+import { Loading } from "@/components/loading/Loading";
 import { ROOT_API } from "@/constant/env";
 import { routes } from "@/constant/routes";
 import { userAtom } from "@/store/token.store";
@@ -11,11 +12,13 @@ import { toast, Toaster } from "react-hot-toast";
 
 export default function Page() {
   const labelList = ["Id", "User", "Date", "Status"];
-  const [dataList, setDataList] = useState<TableRow[]>([]);
 
-  const [userProfile, _] = useAtom(userAtom);
+  const [dataList, setDataList] = useState<TableRow[]>([]);
+  const [isLoading, toggleLoading] = useState<boolean>(false);
+
   const fetchData = async () => {
     try {
+      toggleLoading(true);
       const res = await fetch("/api/histories", {
         method: "GET",
         headers: {
@@ -35,10 +38,12 @@ export default function Page() {
           },
         };
       });
-      console.log("newData", newData);
       setDataList(newData);
     } catch (err) {
       console.log("err", err);
+      toast.error("Something went wrong");
+    } finally {
+      toggleLoading(false);
     }
   };
   useEffect(() => {
@@ -84,19 +89,21 @@ export default function Page() {
           return {
             ...item,
             status: {
-                isDelivered: true
-            }
+              isDelivered: true,
+            },
           };
         }
         return item;
       });
-        setDataList(newDataList);
+      setDataList(newDataList);
     } catch (err) {
       console.log("err", err);
     }
   };
   return (
     <>
+      {isLoading && <Loading />}
+
       <VirtualTable
         labelList={labelList}
         dataList={dataList}

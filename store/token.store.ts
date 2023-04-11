@@ -10,7 +10,7 @@ export const userAtom = atom<UserProfile>({
   lastName: "",
   email: "",
   address: "",
- role: "user",
+  role: "user",
 });
 
 export const tokenAtom = atom(

@@ -8,6 +8,8 @@ import { getCartLocalStorage } from "@/utils/utils";
 import axios from "axios";
 import { useAtom, useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
+import { Loading } from "../loading/Loading";
 import { ProductCard } from "./productCard";
 
 type Props = {
@@ -19,14 +21,24 @@ export const Product = (props: Props) => {
 
   const [orgProducts, setOrgProducts] = useState<ProductItem[]>([]);
   const [products, setProducts] = useState<ProductItem[]>([]);
+  const [isLoading, toggleLoading] = useState<boolean>(false);
 
   const fetchProducts = async () => {
-    const res = await axios.get(`${ROOT_API}/${routes.products}`);
-    const data = await res.data;
+    try {
+      toggleLoading(true);
+      const res = await axios.get(`${ROOT_API}/${routes.products}`);
+      const data = await res.data;
+  
+      const newData = data?.filter((i: any) => i?.quantity > 0);
+      setProducts(newData);
+      setOrgProducts(newData);
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    } finally {
+      toggleLoading(false);
 
-    const newData = data?.filter((i: any) => i?.quantity > 0);
-    setProducts(newData);
-    setOrgProducts(newData);
+    }
   };
 
   useEffect(() => {
@@ -49,10 +61,13 @@ export const Product = (props: Props) => {
     fetchProducts();
   }, []);
   return (
+    <>
+    {isLoading && <Loading />}
     <div className="flex flex-wrap -mx-3">
       {products.map((item, i) => (
         <ProductCard item={item} key={i} />
       ))}
     </div>
+    </>
   );
 };

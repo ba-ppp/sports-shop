@@ -9,8 +9,7 @@ const SignInAvt = dynamic(() => import("@/components/home/signInAvt"), {
   ssr: false,
 });
 
-export default function Home() {
-  
+export default function Home() { 
   return (
     <>
       <section className="bg-blue-500 bg-opacity-20">

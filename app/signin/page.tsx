@@ -6,10 +6,12 @@ import { useState } from "react";
 import { ResponseStatusCode } from "../../enums/enums";
 import { setTokenLocalStorage } from "../../utils/utils";
 import toast, { Toaster } from "react-hot-toast";
+import { Loading } from "@/components/loading/Loading";
 
 export default function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, toggleLoading] = useState(false);
 
   const router = useRouter();
 
@@ -25,27 +27,34 @@ export default function Signin() {
   const handleSignIn = async (e: any) => {
     e.preventDefault();
     try {
+      toggleLoading(true);
       const signInAPI = axios.post("/api/auth/signin", {
         email,
         password,
       });
-      toast.promise(signInAPI, {
-        loading: "Signing in...",
-        success: "Signed in successfully",
-        error: "Failed to sign in",
-      })
+      // toast.promise(signInAPI, {
+      //   loading: "Signing in...",
+      //   success: "Signed in successfully",
+      //   error: "Failed to sign in",
+      // })
       const response = await signInAPI;
       if (response.status === ResponseStatusCode.OK) {
         setTokenLocalStorage(response.data)
+        router.prefetch("/");
         router.push("/");
       }
     } catch (error) {
       console.log(error);
+      toast.error("Failed to sign in");
+
+    } finally {
+      toggleLoading(false);
     }
   };
 
   return (
     <section className="py-20 bg-gray-100 overflow-x-hidden">
+      {isLoading && <Loading />}
       <Toaster />
       <div className="relative container px-4 mx-auto">
         <div className="absolute inset-0 bg-blue-200 my-24 -ml-4"></div>

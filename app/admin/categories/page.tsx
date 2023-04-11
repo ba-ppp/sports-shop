@@ -1,5 +1,6 @@
 "use client";
 import { VirtualTable } from "@/components/admin/VirtualTable";
+import { Loading } from "@/components/loading/Loading";
 import { ROOT_API } from "@/constant/env";
 import { routes } from "@/constant/routes";
 import { TableRow } from "@/types/types";
@@ -10,13 +11,23 @@ import { toast, Toaster } from "react-hot-toast";
 
 export default function Page() {
   const labelList = ["Id", "Name", "Status"];
+
   const [dataList, setDataList] = useState<TableRow[]>([]);
+  const [isLoading, toggleLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const res = await fetch("/api/categories");
-
-      setDataList(await res.json());
+      try {
+        toggleLoading(true);
+        const res = await fetch("/api/categories");
+  
+        setDataList(await res.json());
+      } catch (error) {
+        console.log(error);
+        toast.error("Something went wrong");
+      } finally {
+        toggleLoading(false);
+      }
     };
     fetchCategories();
   }, []);
@@ -89,6 +100,7 @@ export default function Page() {
   };
   return (
     <>
+    {isLoading && <Loading />}
       <VirtualTable
         tableName="Categories"
         labelList={labelList}

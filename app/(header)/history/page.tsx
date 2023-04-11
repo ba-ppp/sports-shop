@@ -1,5 +1,6 @@
 "use client";
 import { VirtualTable } from "@/components/admin/VirtualTable";
+import { Loading } from "@/components/loading/Loading";
 import { ROOT_API } from "@/constant/env";
 import { routes } from "@/constant/routes";
 import { userAtom } from "@/store/token.store";
@@ -11,12 +12,14 @@ import { toast, Toaster } from "react-hot-toast";
 
 export default function Page() {
   const labelList = ["Id", "User", "Date", "Status"];
+
   const [dataList, setDateList] = useState<TableRow[]>([]);
+  const [isLoading, toggleLoading] = useState(false);
 
   const [userProfile, _] = useAtom(userAtom);
   const fetchData = async () => {
-    
     try {
+      toggleLoading(true);
       const res = await fetch("/api/histories", {
         method: "GET",
         headers: {
@@ -38,10 +41,12 @@ export default function Page() {
           
         };
       });
-      console.log('newData', newData)
       setDateList(newData);
     } catch (err) {
       console.log("err", err);
+      toast.error("Failed to fetch histories purcharse data");
+    } finally {
+      toggleLoading(false);
     }
   };
   useEffect(() => {
@@ -67,6 +72,8 @@ export default function Page() {
   }
   return (
     <>
+    {isLoading && <Loading />}
+    <Toaster />
     <VirtualTable
       labelList={labelList}
       dataList={dataList}
