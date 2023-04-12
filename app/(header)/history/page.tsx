@@ -79,6 +79,7 @@ export default function Page() {
       dataList={dataList}
       tableName="History purcharse"
       handleDeleteRow={handleDeleteRow}
+      disabledAdd
     />
     <Toaster />
     </>

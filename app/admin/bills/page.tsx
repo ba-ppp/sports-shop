@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
 
 export default function Page() {
-  const labelList = ["Id", "User", "Date", "Status"];
+  const labelList = ["Id", "User","Address", "Date", "Status"];
 
   const [dataList, setDataList] = useState<TableRow[]>([]);
   const [isLoading, toggleLoading] = useState<boolean>(false);

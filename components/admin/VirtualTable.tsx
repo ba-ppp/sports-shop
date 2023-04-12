@@ -25,6 +25,7 @@ type Props = {
   handleChangeStatus?: (id: string) => void;
   hasImageField?: boolean;
   canEditRow?: boolean;
+  disabledAdd?: boolean;
 };
 export const VirtualTable = (props: Props) => {
   const {
@@ -36,7 +37,8 @@ export const VirtualTable = (props: Props) => {
     handleAddNewRow,
     hasImageField,
     canEditRow,
-    handleChangeStatus
+    handleChangeStatus,
+    disabledAdd,
   } = props;
 
   return (
@@ -69,22 +71,24 @@ export const VirtualTable = (props: Props) => {
                     type="search"
                   />
                 </div>
-                <div className="w-full sm:w-auto px-4">
-                  <div>
-                    <a
-                      className="inline-block py-2 px-4 mr-3 text-xs text-center font-semibold leading-normal text-gray-trizzle-400 bg-gray-trizzle-600 hover:bg-gray-trizzle-700 rounded-lg transition duration-200"
-                      href="#"
-                    >
-                      Cancel
-                    </a>
-                    <div
-                      className="cursor-pointer inline-block py-2 px-4 text-xs text-center font-semibold leading-normal text-blue-50 bg-blue-500 hover:bg-blue-600 rounded-lg transition duration-200"
-                      onClick={handleAddNewRow}
-                    >
-                      Add
+                {!disabledAdd && (
+                  <div className="w-full sm:w-auto px-4">
+                    <div>
+                      <a
+                        className="inline-block py-2 px-4 mr-3 text-xs text-center font-semibold leading-normal text-gray-trizzle-400 bg-gray-trizzle-600 hover:bg-gray-trizzle-700 rounded-lg transition duration-200"
+                        href="#"
+                      >
+                        Cancel
+                      </a>
+                      <div
+                        className="cursor-pointer inline-block py-2 px-4 text-xs text-center font-semibold leading-normal text-blue-50 bg-blue-500 hover:bg-blue-600 rounded-lg transition duration-200"
+                        onClick={handleAddNewRow}
+                      >
+                        Add
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
             <div className="w-full pb-6 overflow-x-auto">

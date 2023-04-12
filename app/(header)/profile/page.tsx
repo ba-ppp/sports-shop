@@ -22,7 +22,6 @@ export default function Page() {
   const router = useRouter();
 
   useEffect(() => {
-    
     setForm(userProfile);
   }, [userProfile, token]);
 
@@ -52,7 +51,6 @@ export default function Page() {
       setTokenLocalStorage(res.data);
 
       setUserProfile(form);
-
     } catch (err) {
       console.log(err);
     }
@@ -65,7 +63,7 @@ export default function Page() {
       lastName: "",
       email: "",
       address: "",
-      role: 'user'
+      role: "user",
     });
     router.push("/signin");
   };
@@ -91,12 +89,14 @@ export default function Page() {
             </div>
             <div className="w-full sm:w-auto px-4">
               <div>
-                {/* <a
-                  className="inline-block py-2 px-4 mr-3 text-xs text-center font-semibold leading-normal text-gray-trizzle-400 bg-gray-trizzle-600 hover:bg-gray-trizzle-700 rounded-lg transition duration-200"
-                  href="#"
-                >
-                  Cancel
-                </a> */}
+                {userProfile.role === "Admin" && (
+                  <a
+                    className="inline-block py-2 px-4 mr-3 text-xs text-center font-semibold leading-normal text-white bg-gray-trizzle-400 hover:bg-gray-trizzle-700 rounded-lg transition duration-200"
+                    href="/admin"
+                  >
+                    Admin page
+                  </a>
+                )}
                 <button
                   className="inline-block py-2 px-4 text-xs text-center font-semibold leading-normal text-blue-50 bg-blue-500 hover:bg-blue-600 rounded-lg transition duration-200"
                   onClick={handleSave}
