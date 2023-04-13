@@ -22,7 +22,6 @@ export default function SignInAvt() {
   };
 
   useEffect(() => {
-    console.log('token', token)
     setToken();
   }, [token]);
 

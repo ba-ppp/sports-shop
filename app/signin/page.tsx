@@ -7,11 +7,15 @@ import { ResponseStatusCode } from "../../enums/enums";
 import { setTokenLocalStorage } from "../../utils/utils";
 import toast, { Toaster } from "react-hot-toast";
 import { Loading } from "@/components/loading/Loading";
+import { useAtom } from "jotai";
+import { tokenAtom } from "@/store/token.store";
 
 export default function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, toggleLoading] = useState(false);
+  const [_, setToken] = useAtom(tokenAtom);
+
 
   const router = useRouter();
 
@@ -40,8 +44,8 @@ export default function Signin() {
       const response = await signInAPI;
       if (response.status === ResponseStatusCode.OK) {
         setTokenLocalStorage(response.data)
-        router.prefetch("/");
-        router.push("/");
+        setToken(response.data.access_token)
+        router.push('/')
       }
     } catch (error) {
       console.log(error);

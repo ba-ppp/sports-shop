@@ -40,9 +40,10 @@ export const tokenAtom = atom(
       return null;
     }
   },
-  async (get, set) => {
+  async (get, set, tempToken?: string) => {
+    
     const token = await get(tokenAtom);
-    const payload: any = jwt_decode(token ?? "");
+    const payload: any = jwt_decode(tempToken ?? token ?? "");
 
     const { name, email, address, role } = payload;
 

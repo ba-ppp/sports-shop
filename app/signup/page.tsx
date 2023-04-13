@@ -1,8 +1,10 @@
 "use client";
 
+import { tokenAtom } from "@/store/token.store";
 import axios from "axios";
+import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { ResponseStatusCode } from "../../enums/enums";
 import { setTokenLocalStorage } from "../../utils/utils";
@@ -10,7 +12,11 @@ import { setTokenLocalStorage } from "../../utils/utils";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [rePassword, setRePassword] = useState("");
   const [isDisabled, toggleDisabled] = useState(true);
+  const [isCheckbox, toggleCheckbox] = useState(false);
+
+  const [_, setToken] = useAtom(tokenAtom);
 
   const router = useRouter();
 
@@ -25,13 +31,21 @@ export default function Login() {
     }
 
     if (name === "repeat_password") {
-      if (value === password) {
-        toggleDisabled(false);
-      } else {
-        toggleDisabled(true);
-      }
+      setRePassword(value);
     }
   };
+
+  const handleCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
+    toggleCheckbox(e.target.checked);
+  };
+
+  useEffect(() => {
+    if (email && password && password === rePassword && isCheckbox) {
+      toggleDisabled(false);
+    } else {
+      toggleDisabled(true);
+    }
+  }, [email, password, rePassword, isCheckbox]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -51,6 +65,7 @@ export default function Login() {
       const res = await signUpAPI;
       if (res.status === ResponseStatusCode.OK) {
         setTokenLocalStorage(res.data);
+        setToken(res.data.access_token);
         router.push("/");
       } else {
         console.log(res.data);
@@ -159,7 +174,12 @@ export default function Login() {
                     onChange={handleInput}
                   />
                   <label className="flex" htmlFor="">
-                    <input className="mr-4 mt-1" type="checkbox" />
+                    <input
+                      className="mr-4 mt-1"
+                      type="checkbox"
+                      checked={isCheckbox}
+                      onChange={handleCheckbox}
+                    />
                     <span className="text-sm text-gray-100 text-center">
                       Agree to our Terms, Data Policy and Cookies.
                     </span>

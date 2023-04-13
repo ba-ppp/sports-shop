@@ -70,7 +70,7 @@ export default function Page() {
                   <div className="flex flex-wrap items-center justify-center -m-1">
                     <div className="w-auto p-1">
                       <span className="inline-block py-1 px-2 text-xs text-green-500 font-medium bg-teal-900 rounded-full">
-                        1,0%
+                        3,0%
                       </span>
                     </div>
                     <div className="w-auto p-1">
@@ -108,7 +108,7 @@ export default function Page() {
                   <div className="flex flex-wrap items-center justify-center -m-1">
                     <div className="w-auto p-1">
                       <span className="inline-block py-1 px-2 text-xs text-green-500 font-medium bg-teal-900 rounded-full">
-                        1,0%
+                        5,3%
                       </span>
                     </div>
                     <div className="w-auto p-1">
@@ -146,7 +146,7 @@ export default function Page() {
                   <div className="flex flex-wrap items-center justify-center -m-1">
                     <div className="w-auto p-1">
                       <span className="inline-block py-1 px-2 text-xs text-green-500 font-medium bg-teal-900 rounded-full">
-                        1,0%
+                        6,2%
                       </span>
                     </div>
                     <div className="w-auto p-1">
