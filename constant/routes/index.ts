@@ -5,6 +5,6 @@ export const routes = {
     products: 'api/products',
     histories: 'api/histories',
     renewToken: 'api/users/renewtoken',
-    changeInfo: '/api/users/changeinfo',
-    productSizes: '/api/productsizes',
+    changeInfo: 'api/users/changeinfo',
+    productSizes: 'api/productsizes',
 }
