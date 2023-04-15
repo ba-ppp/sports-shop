@@ -72,7 +72,7 @@ export const CartRow = (props: Props) => {
         <div className="flex items-center justify-center h-32 mb-4 lg:mb-0 bg-gray-100">
           <img
             className="h-full object-contain"
-            src="yofte-assets/images/waterbottle.png"
+            src={imageURL}
             alt=""
           />
         </div>
