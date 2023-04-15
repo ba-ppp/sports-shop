@@ -58,7 +58,7 @@ export default function Page() {
     const newList = [
       ...dataList,
       {
-        id: String(dataList.length),
+        id: String(dataList.length + 1),
         editableCell: {
           Name: `New Category ${String(dataList.length)}`,
         },
