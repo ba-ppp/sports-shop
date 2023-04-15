@@ -110,6 +110,7 @@ export default function Page() {
         tableName="Users' Billing"
         handleDeleteRow={handleDeleteRow}
         handleChangeStatus={handleChangeStatus}
+        disabledAdd
       />
       <Toaster />
     </>

@@ -51,9 +51,6 @@ export const ProductCard = (props: Props) => {
   return (
     <div className="w-full sm:w-1/2 md:w-1/3 px-3 mb-8">
       <div className="p-6 bg-gray-50">
-        <span className="px-2 py-1 text-xs font-bold font-heading border-2 border-red-500 rounded-full text-red-500 bg-white">
-          -15%
-        </span>
         <a className="block px-6 mt-6 mb-2" href="#">
           <img
             className="mb-5 mx-auto h-56 w-full object-contain"
